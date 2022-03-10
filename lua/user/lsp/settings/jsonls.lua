@@ -1,3 +1,25 @@
+-- https://github.com/LunarVim/Neovim-from-scratch/issues/87
+local function read_json(file_path)
+  local file = io.open(file_path, "r")
+  local table = vim.fn.json_decode(file:read("a"))
+  file.close()
+
+  return table
+end
+
+local default_schemas = nil
+local status_ok, nlspsettings = pcall(require, "nlspsettings")
+if status_ok then
+  local all_schemas = nlspsettings.get_default_schemas()
+  for _, schema in ipairs(all_schemas) do
+    if schema["fileMatch"][1] == "jsonls.json" then
+      local file_path = schema["url"]
+      default_schemas = read_json(file_path)
+      break
+    end
+  end
+end
+
 local schemas = {
   {
     description = "TypeScript compiler configuration file",
@@ -142,10 +164,19 @@ local schemas = {
   },
 }
 
+local function extend(tab1, tab2)
+  for _, value in ipairs(tab2) do
+    table.insert(tab1, value)
+  end
+  return tab1
+end
+
+local extended_schemas = extend(schemas, default_schemas)
+
 local opts = {
   settings = {
     json = {
-      schemas = schemas,
+      schemas = extended_schemas,
     },
   },
   setup = {
