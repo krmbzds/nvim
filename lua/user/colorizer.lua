@@ -15,4 +15,3 @@ colorizer.setup({ "*" }, {
   -- Available modes: foreground, background, virtualtext
   mode = "background", -- Set the display mode.)
 })
-

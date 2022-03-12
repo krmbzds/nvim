@@ -8,7 +8,7 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 -- local diagnostics = null_ls.builtins.diagnostics
 
-null_ls.setup {
+null_ls.setup({
   debug = false,
   sources = {
     formatting.stylua,
@@ -19,4 +19,4 @@ null_ls.setup {
     -- formatting.black.with { extra_args = { "--fast" } },
     -- diagnostics.flake8,
   },
-}
+})
