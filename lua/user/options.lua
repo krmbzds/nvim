@@ -33,6 +33,7 @@ vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- minimum number of lines to keep above/below cursor when scrolling
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
+vim.opt.wildmode = "longest:full,full" -- change tab completion behavior
 
 vim.opt.shortmess:append("c")
 
