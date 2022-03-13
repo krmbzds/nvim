@@ -42,10 +42,6 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
--- Telescope
-keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
-
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
