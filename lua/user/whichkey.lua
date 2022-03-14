@@ -3,6 +3,10 @@ if not status_ok then
   return
 end
 
+local buffer_theme = "ivy"
+local find_file_theme = "dropdown{previewer = false}"
+local find_text_theme = "ivy"
+
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -78,6 +82,7 @@ local opts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+-- stylua: ignore
 local mappings = {
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -85,11 +90,8 @@ local mappings = {
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
-  },
-  ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+  ["f"] = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_" .. find_file_theme .. ")<cr>", "Find files" },
+  ["F"] = { "<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_" .. find_text_theme .. "{})<cr>", "Find text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
   b = {
@@ -97,24 +99,11 @@ local mappings = {
     j = { "<cmd>BufferLinePick<cr>", "Jump" },
     f = { "<cmd>Telescope buffers<cr>", "Find" },
     b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-    -- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
-    e = {
-      "<cmd>BufferLinePickClose<cr>",
-      "Pick which buffer to close",
-    },
+    e = { "<cmd>BufferLinePickClose<cr>", "Pick which buffer to close" },
     h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-    l = {
-      "<cmd>BufferLineCloseRight<cr>",
-      "Close all to the right",
-    },
-    D = {
-      "<cmd>BufferLineSortByDirectory<cr>",
-      "Sort by directory",
-    },
-    L = {
-      "<cmd>BufferLineSortByExtension<cr>",
-      "Sort by language",
-    },
+    l = { "<cmd>BufferLineCloseRight<cr>", "Close all to the right" },
+    D = { "<cmd>BufferLineSortByDirectory<cr>", "Sort by directory" },
+    L = { "<cmd>BufferLineSortByExtension<cr>", "Sort by language" },
   },
 
   p = {
@@ -124,7 +113,7 @@ local mappings = {
     s = { "<cmd>PackerSync<cr>", "Sync" },
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
-    d = { "<cmd>PackerClean<cr><cmd>LuaCacheClear<cr>", "Clean" },
+    d = { "<cmd>PackerClean<cr>", "Clean" },
   },
 
   g = {
@@ -137,44 +126,30 @@ local mappings = {
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
+    u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
     o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    d = {
-      "<cmd>Gitsigns diffthis HEAD<cr>",
-      "Diff",
-    },
+    d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
   },
 
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
+    d = { "<cmd>Telescope diagnostics bufnr=0 theme=" .. buffer_theme .. "<cr>", "Buffer Diagnostics" },
     w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    j = {
-      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-      "Prev Diagnostic",
-    },
+    j = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Next Diagnostic" },
+    k = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+    q = { "<cmd>lua vim.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
-    },
+    S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
   },
+
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
