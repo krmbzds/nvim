@@ -41,6 +41,7 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>0", ":NvimTreeFocus<cr>", opts)
 
 -- Insert --
 -- Press jk fast to enter
