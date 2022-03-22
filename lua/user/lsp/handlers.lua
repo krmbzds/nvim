@@ -1,12 +1,12 @@
 local M = {}
 
--- TODO: backfill this to template
 M.setup = function()
+  local icons = require("user.icons")
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -79,9 +79,6 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-  -- if client.name == "tsserver" then
-  --   client.resolved_capabilities.document_formatting = false
-  -- end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end

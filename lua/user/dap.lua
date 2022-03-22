@@ -13,22 +13,27 @@ if not dap_ruby_status_ok then
   return
 end
 
+local icons_status_ok, icons = pcall(require, "icons")
+if not icons_status_ok then
+  return
+end
+
 -- nvim-dap
 local dap_config = {
   breakpoint = {
-    text = "",
+    text = icons.ui.Bug,
     texthl = "LspDiagnosticsSignError",
     linehl = "",
     numhl = "",
   },
   breakpoint_rejected = {
-    text = "",
+    text = icons.ui.Bug,
     texthl = "LspDiagnosticsSignHint",
     linehl = "",
     numhl = "",
   },
   stopped = {
-    text = "",
+    text = icons.ui.ChevronRight,
     texthl = "LspDiagnosticsSignInformation",
     linehl = "DiagnosticUnderlineInfo",
     numhl = "LspDiagnosticsSignInformation",

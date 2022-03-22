@@ -1,23 +1,29 @@
--- following options are the default
--- each of these are documented in `:help nvim-tree.OPTION_NAME`
+local icons_status_ok, icons = pcall(require, "user.icons")
+if not icons_status_ok then
+  return
+end
+
+local nvim_tree_icons = icons.nvim_tree
+local diagnostic_icons = icons.diagnostics
+
 vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
+  default = nvim_tree_icons.Default,
+  symlink = nvim_tree_icons.Symlink,
   git = {
-    unstaged = "",
-    staged = "S",
-    unmerged = "",
-    renamed = "➜",
-    deleted = "",
-    untracked = "U",
-    ignored = "◌",
+    unstaged = nvim_tree_icons.Git.Unstaged,
+    staged = nvim_tree_icons.Git.Staged,
+    unmerged = nvim_tree_icons.Git.Unmerged,
+    renamed = nvim_tree_icons.Git.Renamed,
+    deleted = nvim_tree_icons.Git.Deleted,
+    untracked = nvim_tree_icons.Git.Untracked,
+    ignored = nvim_tree_icons.Git.Ignored,
   },
   folder = {
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
+    default = nvim_tree_icons.Folder.Default,
+    open = nvim_tree_icons.Folder.Open,
+    empty = nvim_tree_icons.Folder.Empty,
+    empty_open = nvim_tree_icons.Folder.Empty_open,
+    symlink = nvim_tree_icons.Folder.Symlink,
   },
 }
 
@@ -53,10 +59,10 @@ nvim_tree.setup({
   diagnostics = {
     enable = true,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = diagnostic_icons.Hint,
+      info = diagnostic_icons.Information,
+      warning = diagnostic_icons.Warning,
+      error = diagnostic_icons.Error,
     },
   },
   update_focused_file = {
