@@ -93,6 +93,7 @@ local mappings = {
   ["f"] = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_" .. find_file_theme .. ")<cr>", "Find files" },
   ["F"] = { "<cmd>lua require('telescope.builtin').live_grep(require('telescope.themes').get_" .. find_text_theme .. "{})<cr>", "Find text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+  ["z"] = { "<cmd>TZAtaraxis<cr>", "Zen Mode"},
 
   b = {
     name = "Buffers",
