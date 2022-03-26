@@ -47,6 +47,9 @@ keymap("n", "<leader>0", "<cmd>NvimTreeFocus<cr>", opts)
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
 
+-- Make Control+Backspace delete whole words
+keymap("i", "<C-H>", "<C-W>", opts)
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
