@@ -1,5 +1,6 @@
 local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
+  require("notify").notify("Error loading configs", "error")
   return
 end
 

@@ -1,5 +1,6 @@
 local icons_status_ok, icons = pcall(require, "user.icons")
 if not icons_status_ok then
+  require("notify").notify("Error loading icons", "error")
   return
 end
 
@@ -29,11 +30,13 @@ vim.g.nvim_tree_icons = {
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
+  require("notify").notify("Error loading nvim-tree", "error")
   return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
+  require("notify").notify("Error loading nvim-tree config", "error")
   return
 end
 

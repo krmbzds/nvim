@@ -1,5 +1,6 @@
 local status_ok, gitlinker = pcall(require, "gitlinker")
 if not status_ok then
+  require("notify").notify("Error loading gitlinker", "error")
   return
 end
 
