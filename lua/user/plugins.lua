@@ -99,6 +99,7 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   })
   use("JoosepAlviste/nvim-ts-context-commentstring")
+  use("RRethy/nvim-treesitter-endwise")
   use("abecodes/tabout.nvim")
   use("SmiteshP/nvim-gps")
   use("ggandor/leap.nvim")
