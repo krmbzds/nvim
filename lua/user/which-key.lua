@@ -150,6 +150,7 @@ local mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+    D = { "<cmd>DiffviewOpen<cr>", "Diffview" },
     L = { "<cmd>lua vim.g.gitblame_display_virtual_text=1-vim.g.gitblame_display_virtual_text<cr>", "Toggle blame"},
     O = { "<cmd>GitBlameOpenCommitURL<cr>", "Open in browser"},
     h = { "<cmd>GitBlameCopySHA<cr>", "Copy hash"},
