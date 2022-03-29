@@ -186,6 +186,16 @@ local mappings = {
   },
 
   t = {
+    name = "Tabs",
+    c = { "<cmd>tabclose<cr>", "Close tab" },
+    h = { "<cmd>-tabmove<cr>", "Move tab left" },
+    j = { "<cmd>tabnext<cr>", "Next tab" },
+    k = { "<cmd>tabprevious<cr>", "Previous tab" },
+    l = { "<cmd>+tabmove<cr>", "Move tab right" },
+    t = { "<cmd>tab sb %<cr>", "Move buffer to a new tab" },
+  },
+
+  T = {
     name = "Terminal",
     d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Lazydocker" },
     r = { "<cmd>lua _RUBY_TOGGLE()<cr>", "Ruby" },
