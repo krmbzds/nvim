@@ -116,6 +116,7 @@ return packer.startup(function(use)
   use("karb94/neoscroll.nvim")
   use("Pocco81/TrueZen.nvim")
   use("monaqa/dial.nvim")
+  use("kevinhwang91/nvim-bqf")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
