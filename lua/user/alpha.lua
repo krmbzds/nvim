@@ -16,12 +16,13 @@ dashboard.section.header.val = {
   [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 
+-- stylua: ignore
 dashboard.section.buttons.val = {
-  dashboard.button("f", icons.documents.Files .. "  Find file", ":Telescope find_files <CR>"),
+  dashboard.button("f", icons.documents.Files .. "  Find file", ":Telescope find_files theme=dropdown previewer=false <CR>"),
   dashboard.button("e", icons.ui.NewFile .. "  New file", ":ene <BAR> startinsert <CR>"),
   dashboard.button("p", icons.git.Repo .. "  Find project", ":Telescope projects <CR>"),
-  dashboard.button("r", icons.ui.History .. "  Recently used files", ":Telescope oldfiles <CR>"),
-  dashboard.button("t", icons.ui.List .. "  Find text", ":Telescope live_grep <CR>"),
+  dashboard.button("r", icons.ui.History .. "  Recently used files", ":Telescope frecency theme=dropdown previewer=false <CR>"),
+  dashboard.button("t", icons.ui.List .. "  Find text", ":Telescope live_grep theme=ivy <CR>"),
   dashboard.button("c", icons.ui.Gear .. "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
   dashboard.button("q", icons.diagnostics.Error .. "  Quit Neovim", ":qa<CR>"),
 }
