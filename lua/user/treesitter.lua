@@ -11,6 +11,10 @@ configs.setup({
   autopairs = {
     enable = true,
   },
+  autotag = {
+    enable = true,
+    filetypes = { "html", "xml", "javascript", "typescript" },
+  },
   endwise = {
     enable = true,
   },

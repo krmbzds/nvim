@@ -105,6 +105,7 @@ return packer.startup(function(use)
   use("abecodes/tabout.nvim")
   use("SmiteshP/nvim-gps")
   use("ggandor/leap.nvim")
+  use({ "windwp/nvim-ts-autotag" })
 
   -- Git
   use("lewis6991/gitsigns.nvim")
