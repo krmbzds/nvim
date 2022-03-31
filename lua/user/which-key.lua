@@ -1,6 +1,5 @@
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
-  require("notify").notify("Error loading which-key", "error")
   return
 end
 

@@ -1,14 +1,12 @@
 local status_ok, diffview = pcall(require, "diffview")
 if not status_ok then
-  require("notify").notify("Error loading diffview", "error")
   return
 end
 
 local cb = require("diffview.config").diffview_callback
 
-local icons_status_ok, icons = pcall(require, "user.icons")
-if not icons_status_ok then
-  require("notify").notify("Error loading icons", "error")
+local icons_ok, icons = pcall(require, "user.icons")
+if not icons_ok then
   return
 end
 

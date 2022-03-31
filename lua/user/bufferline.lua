@@ -1,6 +1,5 @@
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
-  require("notify").notify("Error loading bufferline", "error")
   return
 end
 
