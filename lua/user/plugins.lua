@@ -36,7 +36,6 @@ packer.init({
 return packer.startup(function(use)
   -- My plugins here
   use({ "wbthomason/packer.nvim" })
-  use({ "abzcoding/filetype.nvim", branch = "fix/qf-syntax" })
   use({ "nvim-lua/popup.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "rcarriga/nvim-notify" })
