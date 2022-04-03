@@ -40,9 +40,9 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
-  disable_netrw = true,
-  hijack_netrw = true,
-  open_on_setup = false,
+  -- disable_netrw = true,
+  -- hijack_netrw = true,
+  -- open_on_setup = false,
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
@@ -51,11 +51,11 @@ nvim_tree.setup({
   -- auto_close = false
   -- open_on_tab = false,
   -- hijack_cursor = false,
-  update_cwd = true,
-  update_to_buf_dir = {
-    enable = true,
-    auto_open = true,
-  },
+  -- update_cwd = true,
+  -- update_to_buf_dir = {
+  --   enable = true,
+  --   auto_open = true,
+  -- },
   diagnostics = {
     enable = true,
     icons = {
@@ -76,7 +76,7 @@ nvim_tree.setup({
   },
   filters = {
     dotfiles = false,
-    custom = {},
+    custom = { ".git", "node_modules" },
   },
   git = {
     enable = true,
@@ -100,14 +100,14 @@ nvim_tree.setup({
     number = false,
     relativenumber = false,
   },
-  trash = {
-    cmd = "trash",
-    require_confirm = true,
-  },
+  -- trash = {
+  --   cmd = "trash",
+  --   require_confirm = true,
+  -- },
   quit_on_open = 0,
   git_hl = 1,
-  disable_window_picker = 0,
-  root_folder_modifier = ":t",
+  -- disable_window_picker = 0,
+  -- root_folder_modifier = ":t",
   show_icons = {
     git = 1,
     folders = 1,
