@@ -43,6 +43,7 @@ https://github.com/folke[folke] ·
 https://github.com/ggandor[ggandor] · 
 https://github.com/goolord[goolord] · 
 https://github.com/hrsh7th[hrsh7th] · 
+https://github.com/jiaoshijie[jiaoshijie] · 
 https://github.com/JoosepAlviste[JoosepAlviste] · 
 https://github.com/jose-elias-alvarez[jose-elias-alvarez] · 
 https://github.com/karb94[karb94] · 

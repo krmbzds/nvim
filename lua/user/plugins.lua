@@ -109,6 +109,7 @@ return packer.startup(function(use)
   use({ "monaqa/dial.nvim" })
   use({ "kevinhwang91/nvim-bqf", requires = { "nvim-treesitter/nvim-treesitter" } })
   use({ "moll/vim-bbye" })
+  use({ "jiaoshijie/undotree" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
