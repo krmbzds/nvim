@@ -76,9 +76,6 @@ keymap("n", "[<C-T>", ":ptprevious<cr>", opts)
 keymap("n", "]<C-T>", ":ptnext<cr>", opts)
 
 -- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-
 -- Make Control+Backspace delete whole words
 keymap("i", "<C-H>", "<C-W>", opts)
 

@@ -110,6 +110,7 @@ return packer.startup(function(use)
   use({ "kevinhwang91/nvim-bqf", requires = { "nvim-treesitter/nvim-treesitter" } })
   use({ "moll/vim-bbye" })
   use({ "jiaoshijie/undotree" })
+  use({ "max397574/better-escape.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
