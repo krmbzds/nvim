@@ -80,7 +80,8 @@ local opts = {
 
 -- stylua: ignore
 local mappings = {
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  ["A"] = { "<cmd>Alpha<cr>", "Alpha" },
+  ["a"] = { "<cmd>Neogen<cr>", "Annotate" },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },

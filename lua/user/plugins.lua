@@ -71,6 +71,7 @@ return packer.startup(function(use)
   -- snippets
   use({ "L3MON4D3/LuaSnip" })
   use({ "rafamadriz/friendly-snippets" })
+  use({ "danymat/neogen", requires = { "nvim-treesitter/nvim-treesitter" } })
 
   -- LSP
   use({ "neovim/nvim-lspconfig" }) -- enable LSP
