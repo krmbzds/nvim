@@ -82,7 +82,6 @@ local opts = {
 local mappings = {
   ["A"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["a"] = { "<cmd>Neogen<cr>", "Annotate" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -97,7 +96,7 @@ local mappings = {
   b = {
     name = "Buffers",
     j = { "<cmd>BufferLinePick<cr>", "Jump" },
-    f = { "<cmd>Telescope buffers<cr>", "Find" },
+    f = { "<cmd>Neotree buffers position=float<cr>", "Find" },
     b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
     e = { "<cmd>BufferLinePickClose<cr>", "Pick which buffer to close" },
     h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },

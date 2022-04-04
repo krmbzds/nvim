@@ -34,23 +34,27 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
+  -- Essentials
   use({ "wbthomason/packer.nvim" })
-  use({ "nvim-lua/popup.nvim" })
+  use({ "lewis6991/impatient.nvim" })
   use({ "nvim-lua/plenary.nvim" })
+  use({ "nvim-lua/popup.nvim" })
+  use({ "MunifTanjim/nui.nvim" })
   use({ "rcarriga/nvim-notify" })
   use({ "kyazdani42/nvim-web-devicons" })
-  use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "akinsho/toggleterm.nvim" })
-  use({ "ahmedkhalf/project.nvim" })
-  use({ "lewis6991/impatient.nvim" })
-  use({ "goolord/alpha-nvim", requires = { "kyazdani42/nvim-web-devicons" } })
-  use({ "antoinemadec/FixCursorHold.nvim" }) -- This is needed to fix lsp doc highlight
-  use({ "folke/which-key.nvim" })
 
-  -- DAP
+  -- UI
+  -- stylua: ignore
+  use({ "nvim-neo-tree/neo-tree.nvim", branch = "v2.x", requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons", "MunifTanjim/nui.nvim" } })
+  use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+  use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+  use({ "SmiteshP/nvim-gps", requires = { "nvim-treesitter/nvim-treesitter", "nvim-lualine/lualine.nvim" } })
+  use({ "goolord/alpha-nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+  use({ "karb94/neoscroll.nvim" })
+  use({ "folke/which-key.nvim" })
+  use({ "Pocco81/TrueZen.nvim" })
+
+  -- Debug Adapter Protocol
   use({ "mfussenegger/nvim-dap" })
   use({ "suketa/nvim-dap-ruby", requires = { "mfussenegger/nvim-dap" } })
   use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
@@ -59,7 +63,7 @@ return packer.startup(function(use)
   use({ "Mofiqul/dracula.nvim" })
   use({ "br1anchen/nvim-colorizer.lua" })
 
-  -- cmp plugins
+  -- Completion
   use({ "hrsh7th/nvim-cmp" })
   use({ "hrsh7th/cmp-buffer", requires = { "hrsh7th/nvim-cmp" } })
   use({ "hrsh7th/cmp-path", requires = { "hhrsh7th/nvim-cmp" } })
@@ -68,12 +72,12 @@ return packer.startup(function(use)
   use({ "hrsh7th/cmp-nvim-lsp", requires = { "hhrsh7th/nvim-cmp" } })
   use({ "hrsh7th/cmp-nvim-lua", requires = { "hhrsh7th/nvim-cmp" } })
 
-  -- snippets
+  -- Snippets
   use({ "L3MON4D3/LuaSnip" })
   use({ "rafamadriz/friendly-snippets" })
   use({ "danymat/neogen", requires = { "nvim-treesitter/nvim-treesitter" } })
 
-  -- LSP
+  -- Language Server Protocol
   use({ "neovim/nvim-lspconfig" }) -- enable LSP
   use({ "williamboman/nvim-lsp-installer", requires = { "neovim/nvim-lspconfig" } })
   use({ "tamago324/nlsp-settings.nvim", requires = { "neovim/nvim-lspconfig" } })
@@ -93,9 +97,7 @@ return packer.startup(function(use)
   use({ "RRethy/nvim-treesitter-endwise", requires = { "nvim-treesitter/nvim-treesitter" } })
   use({ "RRethy/nvim-treesitter-textsubjects", requires = { "nvim-treesitter/nvim-treesitter" } })
   use({ "windwp/nvim-ts-autotag", requires = { "nvim-treesitter/nvim-treesitter" } })
-  use({ "abecodes/tabout.nvim", requires = { "nvim-treesitter/nvim-treesitter" } })
-  use({ "SmiteshP/nvim-gps", requires = { "nvim-treesitter/nvim-treesitter", "nvim-lualine/lualine.nvim" } })
-  use({ "ggandor/leap.nvim" })
+  use({ "ahmedkhalf/project.nvim" })
 
   -- Git
   use({ "lewis6991/gitsigns.nvim" })
@@ -103,15 +105,23 @@ return packer.startup(function(use)
   use({ "ruifm/gitlinker.nvim", requires = { "nvim-lua/plenary.nvim" } })
   use({ "sindrets/diffview.nvim", requires = { "nvim-lua/plenary.nvim", "kyazdani42/nvim-web-devicons" } })
 
-  -- Other
+  -- Movement
+  use({ "ggandor/leap.nvim" })
+  use({ "abecodes/tabout.nvim", requires = { "nvim-treesitter/nvim-treesitter" } })
+
+  -- Text editing helpers
   use({ "sQVe/sort.nvim" })
-  use({ "karb94/neoscroll.nvim" })
-  use({ "Pocco81/TrueZen.nvim" })
   use({ "monaqa/dial.nvim" })
-  use({ "kevinhwang91/nvim-bqf", requires = { "nvim-treesitter/nvim-treesitter" } })
-  use({ "moll/vim-bbye" })
   use({ "jiaoshijie/undotree" })
+
+  -- Hacks
+  use({ "moll/vim-bbye" })
   use({ "max397574/better-escape.nvim" })
+  use({ "antoinemadec/FixCursorHold.nvim" }) -- This is needed to fix lsp doc highlight
+
+  -- Other
+  use({ "akinsho/toggleterm.nvim" })
+  use({ "kevinhwang91/nvim-bqf", requires = { "nvim-treesitter/nvim-treesitter" } })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -104,26 +104,37 @@ local icons = {
     FoldOpen = "",
     FoldClosed = "",
   },
-  nvim_tree = {
-    Default = "",
-    Symlink = "",
-    Git = {
-      Unstaged = "",
-      Staged = "S",
-      Unmerged = "",
-      Renamed = "➜",
-      Deleted = "",
-      Untracked = "U",
-      Ignored = "◌",
+  neo_tree = {
+    indent = {
+      IndentMarker = "│",
+      LastIndentMarker = "└",
+      ExpanderCollapsed = "",
+      ExpanderExpanded = "",
     },
-    Folder = {
-      Default = "",
-      Open = "",
-      Empty = "",
-      Empty_open = "",
-      Symlink = "",
+    icon = {
+      folder = {
+        Closed = "",
+        Open = "",
+        Empty = "",
+      },
+      Default = "",
+    },
+    modified = {
+      Modified = "[+]",
+    },
+    git_status = {
+      symbols = {
+        Added = "",
+        Deleted = "",
+        Modified = "",
+        Renamed = "",
+        Untracked = "",
+        Ignored = "",
+        Unstaged = "",
+        Staged = "",
+        Conflict = "",
+      },
     },
   },
 }
-
 return icons
