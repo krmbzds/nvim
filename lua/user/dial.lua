@@ -21,8 +21,6 @@ dial_config.augends:register_group({
     augend.integer.alias.hex,
     augend.date.alias["%Y-%m-%d"],
     augend.date.alias["%H:%M"],
-    augend.constant.alias.alpha,
-    augend.constant.alias.Alpha,
   },
 })
 

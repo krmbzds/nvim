@@ -80,7 +80,6 @@ local opts = {
 
 -- stylua: ignore
 local mappings = {
-  ["A"] = { "<cmd>Alpha<cr>", "Alpha" },
   ["a"] = { "<cmd>Neogen<cr>", "Annotate" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },

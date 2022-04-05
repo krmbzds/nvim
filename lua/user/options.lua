@@ -40,7 +40,7 @@ opt.scrolloff = 8 -- minimum number of lines to keep above/below cursor when scr
 opt.sidescrolloff = 8
 opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 opt.wildmode = "longest:full,full" -- change tab completion behavior
-opt.shortmess:append("c")
+opt.shortmess:append("cI")
 
 -- disable builtin plugins
 g.loaded_2html_plugin = 1
