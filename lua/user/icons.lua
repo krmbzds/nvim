@@ -98,12 +98,6 @@ local icons = {
     Tag = "",
     Watch = "",
   },
-  diffview = {
-    FolderOpen = "",
-    FolderClosed = "",
-    FoldOpen = "",
-    FoldClosed = "",
-  },
   neo_tree = {
     indent = {
       IndentMarker = "│",
