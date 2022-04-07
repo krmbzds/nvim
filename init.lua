@@ -33,3 +33,5 @@ require("user.bqf")
 require("user.cheatsheet")
 require("user.better-escape")
 require("user.neogen")
+
+vim.opt.laststatus = 3 -- global statusline
