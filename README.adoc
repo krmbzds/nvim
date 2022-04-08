@@ -15,6 +15,7 @@
 :ruby-lang: https://www.ruby-lang.org/en/[Ruby]
 :neovim-from-scratch-license: https://github.com/LunarVim/Neovim-from-scratch/blob/master/LICENSE[terms]
 :dotfiles: https://github.com/krmbzds/dotfiles[dotfiles]
+:screenshot: https://user-images.githubusercontent.com/1383035/162368455-d3107d6a-48f6-4362-bf4a-8fdedf5e0164.png
 
 My personal Neovim configuration, 100% Lua.
 
@@ -73,6 +74,10 @@ https://github.com/TimUntersberger[TimUntersberger] ·
 https://github.com/wbthomason[wbthomason] · 
 https://github.com/williamboman[williamboman] · 
 https://github.com/windwp[windwp]
+
+== Screenshot
+
+image::{screenshot}[alt=Screenshot,link={screenshot},width=640,height=360]
 
 == Extras
 
