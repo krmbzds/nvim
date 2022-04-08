@@ -113,7 +113,6 @@ return packer.startup(function(use)
   use({ "jiaoshijie/undotree" })
 
   -- Hacks
-  use({ "moll/vim-bbye" })
   use({ "max397574/better-escape.nvim" })
   use({ "antoinemadec/FixCursorHold.nvim" }) -- This is needed to fix lsp doc highlight
 

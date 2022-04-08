@@ -55,7 +55,6 @@ https://github.com/lewis6991[lewis6991] ·
 https://github.com/max397574[max397574] · 
 https://github.com/mfussenegger[mfussenegger] · 
 https://github.com/Mofiqul[Mofiqul] · 
-https://github.com/moll[moll] · 
 https://github.com/monaqa[monaqa] · 
 https://github.com/MunifTanjim[MunifTanjim] · 
 https://github.com/numToStr[numToStr] · 
