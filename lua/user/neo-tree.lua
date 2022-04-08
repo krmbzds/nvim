@@ -60,6 +60,10 @@ neo_tree.setup({
       ["<space>"] = "toggle_node",
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
+      ["<tab>"] = function(state)
+        state.commands["open"](state)
+        vim.cmd("Neotree reveal")
+      end,
       ["s"] = "open_split",
       ["v"] = "open_vsplit",
       ["t"] = "open_tabnew",
