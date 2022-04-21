@@ -61,8 +61,13 @@ neo_tree.setup({
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
       ["<tab>"] = function(state)
-        state.commands["open"](state)
-        vim.cmd("Neotree reveal")
+        local node = state.tree:get_node()
+        if require("neo-tree.utils").is_expandable(node) then
+          state.commands["toggle_node"](state)
+        else
+          state.commands["open"](state)
+          vim.cmd("Neotree reveal")
+        end
       end,
       ["s"] = "open_split",
       ["v"] = "open_vsplit",
