@@ -9,6 +9,7 @@ if not icons_ok then
 end
 
 neo_tree.setup({
+  close_if_last_window = "true",
   popup_border_style = "rounded", -- "double", "none", "rounded", "shadow", "single" or "solid"
   default_component_configs = {
     indent = {
