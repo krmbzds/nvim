@@ -93,6 +93,7 @@ neo_tree.setup({
       end,
       ["P"] = "toggle_preview",
       ["z"] = "close_all_nodes",
+      ["Z"] = "expand_all_nodes",
       ["R"] = "refresh",
       ["a"] = "add",
       ["A"] = "add_directory",
@@ -116,7 +117,7 @@ neo_tree.setup({
         ["/"] = "fuzzy_finder",
         --["/"] = "filter_as_you_type", -- this was the default until v1.28
         ["f"] = "filter_on_submit",
-        ["<C-x>"] = "clear_filter",
+        ["<esc>"] = "clear_filter",
         ["<bs>"] = "navigate_up",
         ["."] = "set_root",
       },
