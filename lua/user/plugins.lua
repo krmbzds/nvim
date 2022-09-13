@@ -61,7 +61,7 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use({ "Mofiqul/dracula.nvim" })
-  use({ "br1anchen/nvim-colorizer.lua" })
+  use({ "NvChad/nvim-colorizer.lua" })
 
   -- Completion
   use({ "hrsh7th/nvim-cmp" })
