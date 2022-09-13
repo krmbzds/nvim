@@ -8,6 +8,11 @@ if not icons_ok then
   return
 end
 
+local ignore_ok, file_ignore_patterns = pcall(require, "user.ignore")
+if not ignore_ok then
+  return
+end
+
 neo_tree.setup({
   close_if_last_window = "false",
   popup_border_style = "rounded", -- "double", "none", "rounded", "shadow", "single" or "solid"
@@ -126,11 +131,7 @@ neo_tree.setup({
       visible = false, -- when true, they will just be displayed differently than normal items
       hide_dotfiles = true,
       hide_gitignored = true,
-      hide_by_name = {
-        ".DS_Store",
-        "thumbs.db",
-        "node_modules",
-      },
+      hide_by_name = file_ignore_patterns,
       -- never_show = { -- remains hidden even if visible is toggled to true
       --   --".DS_Store",
       --   --"thumbs.db"
