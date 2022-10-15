@@ -41,21 +41,21 @@ for _, server in pairs(mason_servers) do
   server = vim.split(server, "@")[1]
 
   if server == "sumneko_lua" then
-    local lua_dev_status_ok, lua_dev = pcall(require, "lua-dev")
-    if not lua_dev_status_ok then
+    local neodev_status_ok, neodev = pcall(require, "neodev")
+    if not neodev_status_ok then
       return
     end
     local sumneko_opts = require("user.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", opts, sumneko_opts)
-    opts = vim.tbl_deep_extend("force", opts, require("lua-dev").setup())
-    local luadev = lua_dev.setup({
+    opts = vim.tbl_deep_extend("force", opts, require("neodev").setup())
+    local neodev = neodev.setup({
       lspconfig = {
         on_attach = opts.on_attach,
         capabilities = opts.capabilities,
         settings = opts.settings,
       },
     })
-    lspconfig.sumneko_lua.setup(luadev)
+    lspconfig.sumneko_lua.setup(neodev)
     goto continue
   end
 

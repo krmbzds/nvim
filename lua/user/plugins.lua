@@ -82,7 +82,7 @@ return packer.startup(function(use)
   use({ "williamboman/mason.nvim", requires = { "neovim/nvim-lspconfig" } })
   use({ "williamboman/mason-lspconfig.nvim", requires = { "williamboman/mason.nvim" } })
   use({ "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } })
-  use({ "folke/lua-dev.nvim", requires = { "hrsh7th/nvim-cmp" } })
+  use({ "folke/neodev.nvim", requires = { "hrsh7th/nvim-cmp" } })
 
   -- Telescope
   use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" } })
