@@ -45,17 +45,10 @@ for _, server in pairs(mason_servers) do
     if not neodev_status_ok then
       return
     end
+    neodev.setup({})
     local sumneko_opts = require("user.lsp.settings.sumneko_lua")
     opts = vim.tbl_deep_extend("force", opts, sumneko_opts)
-    opts = vim.tbl_deep_extend("force", opts, require("neodev").setup())
-    local neodev = neodev.setup({
-      lspconfig = {
-        on_attach = opts.on_attach,
-        capabilities = opts.capabilities,
-        settings = opts.settings,
-      },
-    })
-    lspconfig.sumneko_lua.setup(neodev)
+    lspconfig.sumneko_lua.setup(opts)
     goto continue
   end
 
