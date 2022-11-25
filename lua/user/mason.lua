@@ -1,3 +1,8 @@
+local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_ok then
+  return
+end
+
 local mason_ok, mason = pcall(require, "mason")
 if not mason_ok then
   return
@@ -8,14 +13,26 @@ if not mason_lspconfig_ok then
   return
 end
 
-local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_ok then
+local mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
+if not mason_null_ls_ok then
   return
 end
 
 local mason_servers = {
-  "sumneko_lua",
   "solargraph",
+  "sumneko_lua",
+  "tsserver",
+}
+
+local mason_null_ls_servers = {
+  "erb_lint",
+  "jq",
+  "prettierd",
+  "shellcheck",
+  "standardrb",
+  "stylua",
+  "tsserver",
+  "vale",
 }
 
 local mason_settings = {
@@ -27,6 +44,10 @@ local mason_settings = {
 mason.setup(mason_settings)
 mason_lspconfig.setup({
   ensure_installed = mason_servers,
+  automatic_installation = true,
+})
+mason_null_ls.setup({
+  ensure_installed = mason_null_ls_servers,
   automatic_installation = true,
 })
 
