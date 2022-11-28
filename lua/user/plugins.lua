@@ -112,6 +112,7 @@ return packer.startup(function(use)
   -- Movement
   use({ "ggandor/leap.nvim" })
   use({ "abecodes/tabout.nvim", requires = { "nvim-treesitter/nvim-treesitter" }, after = { "cmp-nvim-lsp" } })
+  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 
   -- Text editing helpers
   -- stylua: ignore
