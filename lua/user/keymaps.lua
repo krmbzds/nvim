@@ -54,6 +54,12 @@ keymap("n", "s", "<cmd>lua require('leap').leap { target_windows = { vim.fn.win_
 keymap("n", "gs", "<cmd>lua require('leap').leap { target_windows = require'leap.util'.get_enterable_windows() }<cr>", opts)
 -- stylua: ignore end
 
+-- Substitute
+keymap("n", "S", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+keymap("n", "X", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
+keymap("x", "S", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
+keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
+
 -- Yanky
 -- default mappings
 keymap("n", "p", "<Plug>(YankyPutAfter)", opts)
