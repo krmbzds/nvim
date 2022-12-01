@@ -48,6 +48,12 @@ keymap("n", "<leader>e", "<cmd>Neotree toggle position=left<cr>", opts)
 keymap("n", "<leader>E", "<cmd>Neotree toggle position=float<cr>", opts)
 keymap("n", "<leader>0", "<cmd>Neotree focus<cr>", opts)
 
+-- Leap
+-- stylua: ignore start
+keymap("n", "s", "<cmd>lua require('leap').leap { target_windows = { vim.fn.win_getid() } }<cr>", opts)
+keymap("n", "gs", "<cmd>lua require('leap').leap { target_windows = require'leap.util'.get_enterable_windows() }<cr>", opts)
+-- stylua: ignore end
+
 -- Yanky
 -- default mappings
 keymap("n", "p", "<Plug>(YankyPutAfter)", opts)
