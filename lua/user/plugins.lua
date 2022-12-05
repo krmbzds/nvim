@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use({ "folke/which-key.nvim" })
   use({ "Pocco81/true-zen.nvim" })
   use({ "RRethy/vim-illuminate" })
+  use({ "stevearc/dressing.nvim" })
 
   -- Debug Adapter Protocol
   use({ "mfussenegger/nvim-dap" })
