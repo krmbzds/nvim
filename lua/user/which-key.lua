@@ -131,6 +131,7 @@ local mappings = {
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
     d = { "<cmd>PackerClean<cr>", "Clean" },
+    n = { "<cmd>Telescope notify theme=ivy<cr>", "Notifications"}
   },
 
   g = {
