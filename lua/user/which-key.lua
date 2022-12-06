@@ -160,14 +160,13 @@ local mappings = {
     q = { "<cmd>lua require('trouble').open('quickfix')<cr>", "Quickfix List" },
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     A = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    d = { "<cmd>lua require('trouble').open('document_diagnostics')<cr>", "Document Diagnostics" },
+    d = { "<cmd>lua require('trouble').toggle()<cr>", "Document Diagnostics" },
     D = { "<cmd>lua require('trouble').open('workspace_diagnostics')<cr>", "Workspace" },
     f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
     L = { "<cmd>lua require('trouble').open('lsp_references')<cr>", "LSP References" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
-    x = { "<cmd>lua require('trouble').toggle()<cr>", "Toggle" },
   },
 
   s = {
