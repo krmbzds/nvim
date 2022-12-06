@@ -164,7 +164,7 @@ local mappings = {
     D = { "<cmd>lua require('trouble').open('workspace_diagnostics')<cr>", "Workspace" },
     f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
     L = { "<cmd>lua require('trouble').open('lsp_references')<cr>", "LSP References" },
-    r = { ":IncRename ", "Rename" },
+    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     x = { "<cmd>lua require('trouble').toggle()<cr>", "Toggle" },
