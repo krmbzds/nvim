@@ -5,12 +5,12 @@ end
 
 local ignore = require("user.ignore")
 local actions = require("telescope.actions")
+local icons = require("user.icons")
 
 telescope.setup({
   defaults = {
-
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = icons.telescope.prompt_prefix,
+    selection_caret = icons.telescope.selection_caret,
     path_display = { "smart" },
     file_ignore_patterns = ignore.file_ignore_patterns,
 

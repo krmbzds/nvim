@@ -40,5 +40,6 @@ require("user.cheatsheet")
 require("user.better-escape")
 require("user.neogen")
 require("user.undotree")
+require("user.gtd")
 
 vim.opt.laststatus = 3 -- global statusline

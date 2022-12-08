@@ -112,6 +112,7 @@ return packer.startup(function(use)
   use({ "TimUntersberger/neogit", requires = { "nvim-lua/plenary.nvim" } })
 
   -- Movement
+  use({ "hrsh7th/nvim-gtd" })
   use({ "ggandor/leap.nvim" })
   use({ "abecodes/tabout.nvim", requires = { "nvim-treesitter/nvim-treesitter" }, after = { "cmp-nvim-lsp" } })
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
