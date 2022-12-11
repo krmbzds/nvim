@@ -204,13 +204,6 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
-
-  y = {
-    name = "Misc",
-    n = { "<cmd>ShenzhenSolitaireNextGame<cr>", "Shenzhen Solitaire" },
-    y = { "<cmd>CellularAutomaton make_it_rain<cr>", "Make it rain" },
-    h = { "<cmd>YankyClearHistory<cr>", "Clear Yank History" },
-  },
 }
 
 local vopts = {

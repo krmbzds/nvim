@@ -134,8 +134,6 @@ return packer.startup(function(use)
   -- Other
   use({ "akinsho/toggleterm.nvim" })
   use({ "kevinhwang91/nvim-bqf", requires = { "nvim-treesitter/nvim-treesitter" } })
-  use({ "eandrju/cellular-automaton.nvim" })
-  use({ "rktjmp/shenzhen-solitaire.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
