@@ -360,6 +360,12 @@ return packer.startup(function(use)
 
   use({
     "ggandor/leap.nvim",
+    requires = {
+      "ggandor/flit.nvim",
+      config = function()
+        require("flit").setup({})
+      end,
+    },
     config = function()
       require("user.leap")
     end,
