@@ -8,6 +8,11 @@ if not snip_status_ok then
   return
 end
 
+local tabout_status_ok, tabout = pcall(require, "tabout")
+if not tabout_status_ok then
+  return
+end
+
 local buffer_fts = {
   "markdown",
   "toml",
@@ -90,6 +95,8 @@ cmp.setup({
         luasnip.expand_or_jump()
       elseif luasnip.jumpable(1) then
         luasnip.jump(1)
+      elseif vim.api.nvim_get_mode().mode == "i" then
+        tabout.tabout()
       elseif check_backspace() then
         -- cmp.complete()
         fallback()
