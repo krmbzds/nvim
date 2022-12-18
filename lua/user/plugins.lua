@@ -45,6 +45,13 @@ return packer.startup(function(use)
   use({ "gpanders/editorconfig.nvim" })
 
   use({
+    "rmagatti/auto-session",
+    config = function()
+      require("user.auto-session")
+    end,
+  })
+
+  use({
     "stevearc/dressing.nvim",
     config = function()
       require("user.dressing")
@@ -60,12 +67,10 @@ return packer.startup(function(use)
 
   use({
     "nvim-lualine/lualine.nvim",
-    requires = {
-      "nvim-tree/nvim-web-devicons",
-      config = function()
-        require("user.lualine")
-      end,
-    },
+    requires = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("user.lualine")
+    end,
   })
 
   use({

@@ -5,7 +5,7 @@ local cmd = vim.cmd
 local opt = vim.opt
 
 -- :help options
-opt.backup = false -- creates a backup file
+opt.backup = true -- creates a backup file
 opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
 opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
@@ -26,9 +26,10 @@ opt.splitright = true -- force all vertical splits to go to the right of current
 opt.swapfile = false -- creates a swapfile
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.timeoutlen = 100 -- time to wait for a mapped sequence to complete (in milliseconds)
-opt.undofile = false -- enable persistent undo
+opt.undofile = true -- enable persistent undo
+opt.undolevels = 1000
 opt.updatetime = 300 -- faster completion (4000ms default)
-opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+opt.writebackup = true -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 opt.expandtab = true -- convert tabs to spaces
 opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 opt.tabstop = 2 -- insert 2 spaces for a tab
@@ -48,9 +49,12 @@ opt.foldcolumn = "auto:4"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
+opt.shada = "!,'0,f0,<50,s10,h"
+opt.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize" -- Session options to store in the session
 ---@diagnostic enable
 
 -- disable builtin plugins
+g.loaded_perl_provider = 0
 g.loaded_2html_plugin = 1
 g.loaded_getscript = 1
 g.loaded_getscriptPlugin = 1

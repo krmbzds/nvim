@@ -20,6 +20,15 @@ local diagnostics = {
   always_visible = false,
 }
 
+local session = function()
+  local status, result = pcall(require("auto-session-library").current_session_name)
+  local session_name = "no session"
+  if status then
+    session_name = result
+  end
+  return " " .. session_name
+end
+
 local diff = {
   "diff",
   colored = false,
@@ -81,7 +90,7 @@ lualine.setup({
     lualine_b = { mode },
     lualine_c = { diagnostics },
     -- lualine_x = { "encoding", "fileformat", "filetype" },
-    lualine_x = { diff, spaces, "encoding", filetype },
+    lualine_x = { session, diff, spaces, "encoding", filetype },
     lualine_y = { location },
     lualine_z = { progress },
   },
