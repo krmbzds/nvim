@@ -255,6 +255,7 @@ return packer.startup(function(use)
       keys = {
         { "n", "gc" },
         { "n", "gb" },
+        { "v", "gc" },
         { "v", "/" },
       },
       config = function()
