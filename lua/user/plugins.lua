@@ -246,9 +246,6 @@ return packer.startup(function(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    config = function()
-      require("user.treesitter")
-    end,
     {
       "numToStr/Comment.nvim",
       after = { "nvim-treesitter" },
@@ -285,7 +282,12 @@ return packer.startup(function(use)
     },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "RRethy/nvim-treesitter-endwise" },
-    { "RRethy/nvim-treesitter-textsubjects" },
+    {
+      "RRethy/nvim-treesitter-textsubjects",
+      config = function()
+        require("user.treesitter")
+      end,
+    },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "windwp/nvim-ts-autotag" },
     {
