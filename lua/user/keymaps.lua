@@ -47,6 +47,8 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
 
 -- Open links
 keymap("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
+keymap("n", "gX", "<cmd>GrepAppCursorLine<cr>", opts)
+keymap("n", "gy", "<cmd>GrepAppClipboard<cr>", opts)
 
 -- Neotree
 keymap("n", "<leader>e", "<cmd>Neotree toggle position=left<cr>", opts)

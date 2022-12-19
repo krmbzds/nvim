@@ -199,7 +199,7 @@ cmp.setup.cmdline(":", {
   },
 })
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?", "@" }, {
   sources = {
     { name = "buffer" },
   },
