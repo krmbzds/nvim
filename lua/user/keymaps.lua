@@ -45,6 +45,9 @@ keymap("n", "<A-h>", ":tabprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
 
+-- Open links
+keymap("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
+
 -- Neotree
 keymap("n", "<leader>e", "<cmd>Neotree toggle position=left<cr>", opts)
 keymap("n", "<leader>E", "<cmd>Neotree toggle position=float<cr>", opts)
