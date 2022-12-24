@@ -4,7 +4,7 @@ if not status_ok then
   return
 end
 
-local setup = {
+local wk_setup = {
   plugins = {
     marks = false, -- shows a list of your marks on ' and `
     registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -70,7 +70,7 @@ local setup = {
   },
 }
 
-local opts = {
+local wk_opts = {
   mode = "n", -- NORMAL mode
   prefix = "<leader>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -80,7 +80,7 @@ local opts = {
 }
 
 -- stylua: ignore
-local mappings = {
+local wk_mappings = {
   ["a"] = { "<cmd>Neogen<cr>", "Annotate" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
@@ -206,7 +206,7 @@ local mappings = {
   },
 }
 
-local vopts = {
+local wk_vopts = {
   mode = "v", -- VISUAL mode
   prefix = "<leader>",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
@@ -216,7 +216,7 @@ local vopts = {
 }
 
 -- stylua: ignore
-local vmappings = {
+local wk_vmappings = {
   ["/"] = { "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", "Comment" },
   g = {
     name = "Git",
@@ -226,13 +226,19 @@ local vmappings = {
 }
 
 -- Register which-key bindings
-which_key.setup(setup)
-which_key.register(mappings, opts)
-which_key.register(vmappings, vopts)
+which_key.setup(wk_setup)
+which_key.register(wk_mappings, wk_opts)
+which_key.register(wk_vmappings, wk_vopts)
 
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
+
+keymap("n", "J", "mzJ`z")
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
 
 --Remap space as leader key (needs to be done before loading lazy.nvim)
 keymap("", "<Space>", "<Nop>", opts)
