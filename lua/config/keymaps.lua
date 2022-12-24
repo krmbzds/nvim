@@ -230,15 +230,17 @@ which_key.setup(wk_setup)
 which_key.register(wk_mappings, wk_opts)
 which_key.register(wk_vmappings, wk_vopts)
 
+-- Keymaps
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
-keymap("n", "J", "mzJ`z")
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+-- theprimeagen
+keymap("n", "J", "mzJ`z", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
+keymap("n", "n", "nzzzv", opts)
+keymap("n", "N", "Nzzzv", opts)
 
 --Remap space as leader key (needs to be done before loading lazy.nvim)
 keymap("", "<Space>", "<Nop>", opts)
