@@ -328,12 +328,8 @@ keymap("n", "=p", "<Plug>(YankyPutAfterFilter)", opts)
 keymap("n", "=P", "<Plug>(YankyPutBeforeFilter)", opts)
 
 -- Unimpaired
-keymap("n", "[a", ":previous<cr>", opts)
-keymap("n", "]a", ":next<cr>", opts)
 keymap("n", "[A", ":first<cr>", opts)
 keymap("n", "]A", ":last<cr>", opts)
-keymap("n", "[b", ":bprevious<cr>", opts)
-keymap("n", "]b", ":bnext<cr>", opts)
 keymap("n", "[B", ":bfirst<cr>", opts)
 keymap("n", "]B", ":blast<cr>", opts)
 keymap("n", "[l", ":lprevious<cr>", opts)
