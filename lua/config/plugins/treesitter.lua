@@ -71,6 +71,63 @@ function M.config()
       enable = true,
       enable_autocmd = false,
     },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true,
+        keymaps = {
+          ["ab"] = "@block.outer",
+          ["ib"] = "@block.inner",
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+          ["aa"] = "@parameter.outer",
+          ["ia"] = "@parameter.inner",
+        },
+        selection_modes = {
+          ["@parameter.outer"] = "v", -- charwise
+          ["@function.outer"] = "V", -- linewise
+          ["@class.outer"] = "<c-v>", -- blockwise
+        },
+        include_surrounding_whitespace = true,
+      },
+      move = {
+        enable = true,
+        set_jumps = true,
+        goto_next_start = {
+          ["]a"] = "@parameter.inner",
+          ["]b"] = "@block.inner",
+          ["]c"] = "@class.inner",
+          ["]f"] = "@function.inner",
+          ["]m"] = "@function.outer",
+        },
+        goto_next_end = {
+          ["]eb"] = "@block.inner",
+          ["]ec"] = "@class.inner",
+          ["]ef"] = "@function.inner",
+          ["]em"] = "@function.outer",
+        },
+        goto_previous_start = {
+          ["[a"] = "@parameter.inner",
+          ["[b"] = "@block.inner",
+          ["[c"] = "@class.inner",
+          ["[f"] = "@function.inner",
+          ["[m"] = "@function.outer",
+        },
+        goto_previous_end = {
+          ["[eb"] = "@block.inner",
+          ["[ec"] = "@class.inner",
+          ["[ef"] = "@function.inner",
+          ["[em"] = "@function.outer",
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = { ["]["] = "@parameter.inner" },
+        swap_previous = { ["[]"] = "@parameter.inner" },
+      },
+    },
     textsubjects = {
       enable = true,
       prev_selection = ",", -- (Optional) keymap to select the previous selection
