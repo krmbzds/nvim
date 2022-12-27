@@ -245,8 +245,6 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "J", "mzJ`z", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
-keymap("n", "n", "nzzzv", opts)
-keymap("n", "N", "Nzzzv", opts)
 
 --Remap space as leader key (needs to be done before loading lazy.nvim)
 keymap("", "<Space>", "<Nop>", opts)
