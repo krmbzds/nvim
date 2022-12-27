@@ -64,7 +64,7 @@ local ignore = {
     "DressingSelect",
     "neo-tree",
     "neogitstatus",
-    "packer",
+    "lazy",
     "TelescopePrompt",
     "toggleterm",
   },

@@ -89,11 +89,11 @@ local wk_mappings = {
   ["h"] = { "<cmd>set invhlsearch<CR>", "Toggle Highlight" },
   ["f"] = { "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Find File" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  ["r"] = { "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", "Recent Files"},
+  ["r"] = { "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", "Recent Files" },
   ["u"] = { "<cmd>lua require('undotree').toggle()<cr>", "Undotree" },
-  ["z"] = { "<cmd>TZAtaraxis<cr>", "Zen Mode"},
-  ["F"] = { "<cmd>TZFocus<cr>", "Focus Mode"},
-  ["?"] = { "<cmd>Cheatsheet<cr>", "Cheatsheet"},
+  ["z"] = { "<cmd>TZAtaraxis<cr>", "Zen Mode" },
+  ["F"] = { "<cmd>TZFocus<cr>", "Focus Mode" },
+  ["?"] = { "<cmd>Cheatsheet<cr>", "Cheatsheet" },
 
   b = {
     name = "Buffers",
@@ -125,14 +125,20 @@ local wk_mappings = {
   },
 
   p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
-    d = { "<cmd>PackerClean<cr>", "Clean" },
-    n = { "<cmd>Telescope notify theme=ivy<cr>", "Notifications"}
+    name = "Lazy",
+    o = { "<cmd>lua require('lazy').home()<cr>", "Home" },
+    i = { "<cmd>lua require('lazy').install()<cr>", "Install" },
+    u = { "<cmd>lua require('lazy').update()<cr>", "Update" },
+    s = { "<cmd>lua require('lazy').sync()<cr>", "Sync" },
+    x = { "<cmd>lua require('lazy').clean()<cr>", "Clean" },
+    c = { "<cmd>lua require('lazy').check()<cr>", "Check" },
+    L = { "<cmd>lua require('lazy').log()<cr>", "Log" },
+    R = { "<cmd>lua require('lazy').restore()<cr>", "Restore" },
+    p = { "<cmd>lua require('lazy').profile()<cr>", "Profile" },
+    D = { "<cmd>lua require('lazy').debug()<cr>", "Debug" },
+    H = { "<cmd>lua require('lazy').help()<cr>", "Help" },
+    B = { "<cmd>lua require('lazy').clear()<cr>", "Clear" },
+    n = { "<cmd>Telescope notify theme=ivy<cr>", "Notifications" }
   },
 
   g = {
@@ -150,9 +156,9 @@ local wk_mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-    L = { "<cmd>lua vim.g.gitblame_display_virtual_text=1-vim.g.gitblame_display_virtual_text<cr>", "Toggle blame"},
-    O = { "<cmd>GitBlameOpenCommitURL<cr>", "Open in browser"},
-    h = { "<cmd>GitBlameCopySHA<cr>", "Copy hash"},
+    L = { "<cmd>lua vim.g.gitblame_display_virtual_text=1-vim.g.gitblame_display_virtual_text<cr>", "Toggle blame" },
+    O = { "<cmd>GitBlameOpenCommitURL<cr>", "Open in browser" },
+    h = { "<cmd>GitBlameCopySHA<cr>", "Copy hash" },
   },
 
   l = {
@@ -173,7 +179,7 @@ local wk_mappings = {
     f = { "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", "Find files" },
     g = { "<cmd>Telescope live_grep theme=ivy<cr>", "Live Grep" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-    c = { "<cmd>Cheatsheet<cr>", "Cheatsheet"},
+    c = { "<cmd>Cheatsheet<cr>", "Cheatsheet" },
     h = { "<cmd>Telescope help_tags<cr>", "Help" },
     l = { "<cmd>Telescope resume<cr>", "Last Search" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
