@@ -52,87 +52,8 @@ function M.config()
     return
   end
 
-  local solargraph_cmd = function()
-    local ret_code = nil
-    local jid = vim.fn.jobstart("grep -o solargraph Gemfile.lock", {
-      on_exit = function(_, data)
-        ret_code = data
-      end,
-    })
-    vim.fn.jobwait({ jid }, 5000)
-    if ret_code == 0 then
-      return { "bundle", "exec", "solargraph", "stdio" }
-    end
-    return { "solargraph", "stdio" }
-  end
-
-  local sumneko_lua_opts = {
-    settings = {
-      Lua = {
-        type = {
-          -- weakUnionCheck = true,
-          -- weakNilCheck = true,
-          -- castNumberToInteger = true,
-        },
-        format = {
-          enable = false,
-        },
-        hint = {
-          enable = true,
-          arrayIndex = "Disable", -- "Enable", "Auto", "Disable"
-          await = true,
-          paramName = "Disable", -- "All", "Literal", "Disable"
-          paramType = false,
-          semicolon = "Disable", -- "All", "SameLine", "Disable"
-          setType = true,
-        },
-        -- spell = {"the"}
-        runtime = {
-          version = "5.1",
-          special = {
-            reload = "require",
-          },
-        },
-        diagnostics = {
-          globals = { "vim" },
-          disable = {
-            "different-requires",
-          },
-        },
-        workspace = {
-          library = {
-            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.stdpath("config") .. "/lua"] = true,
-            -- [vim.fn.datapath "config" .. "/lua"] = true,
-          },
-          checkThirdParty = false,
-        },
-        telemetry = {
-          enable = false,
-        },
-      },
-    },
-  }
-
-  local solargraph_opts = {
-    cmd = solargraph_cmd(),
-    filetypes = { "ruby", "rakefile" },
-    init_options = {
-      formatting = false,
-    },
-    root_dir = require("lspconfig/util").root_pattern("Gemfile", ".git"),
-    settings = {
-      solargraph = {
-        autoformat = false,
-        completion = true,
-        diagnostic = true,
-        folding = true,
-        references = true,
-        rename = true,
-        symbols = true,
-      },
-    },
-  }
+  local sumneko_lua_opts = require("config.lsp.sumneko_lua")
+  local solargraph_opts = require("config.lsp.solargraph")
 
   require("mason.settings").set({ ui = { border = "rounded" } })
   lsp.preset("recommended")
