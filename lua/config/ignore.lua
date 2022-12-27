@@ -55,7 +55,7 @@ local ignore = {
 
   lualine_disabled_filetypes = {
     "dashboard",
-    "neo-tree",
+    -- "neo-tree",
     "toggleterm",
   },
 
