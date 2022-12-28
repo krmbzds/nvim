@@ -14,7 +14,7 @@ function M.config()
   -- dracula.nvim color palette customization
   dracula.setup({
     colors = {
-      black = "#454158",
+      black = "#17161D",
       red = "#FF9580",
       green = "#8AFF80",
       yellow = "#FFFF80",
@@ -36,7 +36,7 @@ function M.config()
       menu = "#21222C",
       visual = "#3E4452",
       gutter_fg = "#4B5263",
-      nontext = "#3B4048",
+      nontext = "#424450",
     },
 
     -- dracula.nvim other options
