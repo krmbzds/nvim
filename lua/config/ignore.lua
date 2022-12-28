@@ -1,4 +1,16 @@
 local ignore = {
+  barbecue_ignore_patterns = {
+    "DressingSelect",
+    "TelescopePrompt",
+    "Undotree",
+    "UndotreeDiff",
+    "dashboard",
+    "lazy",
+    "neo-tree",
+    "neogitstatus",
+    "qf",
+    "toggleterm",
+  },
 
   file_ignore_patterns = {
     "%.7z",

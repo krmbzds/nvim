@@ -47,6 +47,11 @@ function M.config()
     return
   end
 
+  local status_navic_ok, navic = pcall(require, "nvim-navic")
+  if not status_navic_ok then
+    return
+  end
+
   local status_fidget_ok, fidget = pcall(require, "fidget")
   if not status_fidget_ok then
     return
@@ -60,9 +65,16 @@ function M.config()
   lsp.ensure_installed({ "solargraph", "sumneko_lua", "tsserver" })
   lsp.configure("sumneko_lua", sumneko_lua_opts)
   lsp.configure("solargraph", solargraph_opts)
-  lsp.on_attach(function(client, _)
+  lsp.on_attach(function(client, bufnr)
+    if vim.b.lsp_attached then
+      return
+    end
+    vim.b.lsp_attached = true
     if client.name == "sumneko_lua" then
       neodev.setup({})
+    end
+    if client.server_capabilities["documentSymbolProvider"] then
+      navic.attach(client, bufnr)
     end
   end)
   lsp.nvim_workspace(sumneko_lua_opts)

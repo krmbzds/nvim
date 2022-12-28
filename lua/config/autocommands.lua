@@ -60,3 +60,10 @@ vim.api.nvim_create_autocmd("User", {
   end,
   group = leap_illuminate,
 })
+
+-- vim.api.nvim_create_autocmd({ "WinScrolled", "BufWinEnter", "CursorHold", "InsertLeave" }, {
+--   group = vim.api.nvim_create_augroup("barbecue", {}),
+--   callback = function()
+--     require("barbecue.ui").update()
+--   end,
+-- })

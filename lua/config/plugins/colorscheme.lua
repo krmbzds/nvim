@@ -1,5 +1,5 @@
 local M = {
-  "Mofiqul/dracula.nvim",
+  "krmbzds/dracula.nvim",
   lazy = false,
 }
 
