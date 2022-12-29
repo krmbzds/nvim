@@ -82,4 +82,4 @@ g.ts_highlight_lua = true
 
 cmd("set whichwrap+=<,>,[,],h,l")
 cmd([[set iskeyword+=-]])
-cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+cmd([[autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]])
