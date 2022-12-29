@@ -291,6 +291,9 @@ keymap("n", "gx", [[:silent execute '!open ' . shellescape(expand('<cfile>'), 1)
 keymap("n", "gX", "<cmd>GrepAppCursorLine<cr>", opts)
 keymap("n", "gy", "<cmd>GrepAppClipboard<cr>", opts)
 
+-- Go to file
+keymap("n", "gf", "<cmd>lua require('gtd').exec({ command = 'edit' })<cr>", opts)
+
 -- Neotree
 keymap("n", "<leader>e", "<cmd>Neotree toggle position=left<cr>", opts)
 keymap("n", "<leader>E", "<cmd>Neotree toggle position=float<cr>", opts)
