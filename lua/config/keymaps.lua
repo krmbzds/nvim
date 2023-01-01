@@ -155,7 +155,6 @@ local wk_mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
-    L = { "<cmd>lua vim.g.gitblame_display_virtual_text=1-vim.g.gitblame_display_virtual_text<cr>", "Toggle blame" },
     O = { "<cmd>GitBlameOpenCommitURL<cr>", "Open in browser" },
     h = { "<cmd>GitBlameCopySHA<cr>", "Copy hash" },
   },
@@ -198,16 +197,6 @@ local wk_mappings = {
     k = { "<cmd>tabprevious<cr>", "Previous tab" },
     l = { "<cmd>+tabmove<cr>", "Move tab right" },
     t = { "<cmd>tab sb %<cr>", "Move buffer to a new tab" },
-  },
-
-  T = {
-    name = "Terminal",
-    d = { "<cmd>lua _LAZYDOCKER_TOGGLE()<cr>", "Lazydocker" },
-    r = { "<cmd>lua _RUBY_TOGGLE()<cr>", "Ruby" },
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
 }
 
