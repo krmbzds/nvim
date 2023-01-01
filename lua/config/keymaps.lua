@@ -137,7 +137,8 @@ local wk_mappings = {
     D = { "<cmd>lua require('lazy').debug()<cr>", "Debug" },
     H = { "<cmd>lua require('lazy').help()<cr>", "Help" },
     B = { "<cmd>lua require('lazy').clear()<cr>", "Clear" },
-    n = { "<cmd>Telescope notify theme=ivy<cr>", "Notifications" }
+    n = { "<cmd>Telescope notify theme=ivy<cr>", "Notifications" },
+    m = { "<cmd>Mason<cr>", "Mason" },
   },
 
   g = {
