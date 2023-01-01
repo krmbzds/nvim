@@ -142,7 +142,7 @@ local wk_mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua require('neogit').open()<cr>", "Neogit" },
+    g = { "<cmd>!smerge .<cr>", "Open GUI" },
     j = { "<cmd>lua require('gitsigns').next_hunk()<cr>", "Next hunk" },
     k = { "<cmd>lua require('gitsigns').prev_hunk()<cr>", "Prev hunk" },
     l = { "<cmd>lua require('gitsigns').blame_line()<cr>", "Blame line" },
