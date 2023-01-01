@@ -198,6 +198,20 @@ local wk_mappings = {
     l = { "<cmd>+tabmove<cr>", "Move tab right" },
     t = { "<cmd>tab sb %<cr>", "Move buffer to a new tab" },
   },
+
+  n = {
+    name = "Neotest",
+    n = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Toggle summary" },
+    t = { "<cmd>lua require('neotest').run.run()<CR>", "Test nearest" },
+    f = { "<cmd>lua require('neotest').run.run(vim.fn.expand(' % '))<CR>", "Test file" },
+    l = { "<cmd>lua require('neotest').run.run_last()<CR>", "Run last test" },
+    s = { function()
+      local neotest = require("neotest")
+      for _, adapter_id in ipairs(neotest.run.adapters()) do
+        neotest.run.run({ suite = true, adapter = adapter_id })
+      end
+    end, "Test suite" },
+  }
 }
 
 local wk_vopts = {
