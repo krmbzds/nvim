@@ -91,8 +91,7 @@ local wk_mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   ["r"] = { "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", "Recent Files" },
   ["u"] = { "<cmd>lua require('undotree').toggle()<cr>", "Undotree" },
-  ["z"] = { "<cmd>TZAtaraxis<cr>", "Zen Mode" },
-  ["F"] = { "<cmd>TZFocus<cr>", "Focus Mode" },
+  ["z"] = { "<cmd>:NoNeckPain<cr>", "No Neck Pain" },
   ["?"] = { "<cmd>Cheatsheet<cr>", "Cheatsheet" },
 
   b = {
