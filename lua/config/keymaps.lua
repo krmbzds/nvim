@@ -378,6 +378,9 @@ keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
+-- Sort selection
+keymap("v", "&", ":Sort u<CR>", opts)
+
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":m '>+1<CR>gv-gv", opts)
