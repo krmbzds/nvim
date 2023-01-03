@@ -304,14 +304,13 @@ keymap("n", "<leader>0", "<cmd>Neotree focus<cr>", opts)
 
 -- Leap
 -- stylua: ignore start
-keymap("n", "s", "<cmd>lua require('leap').leap { target_windows = { vim.fn.win_getid() } }<cr>", opts)
-keymap("n", "gs", "<cmd>lua require('leap').leap { target_windows = require'leap.util'.get_enterable_windows() }<cr>", opts)
+keymap("n", "kj", "<cmd>lua require('leap').leap { target_windows = vim.tbl_filter(function(win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0)) }<cr>", opts)
 -- stylua: ignore end
 
 -- Substitute
-keymap("n", "S", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+keymap("n", "su", "<cmd>lua require('substitute').operator()<cr>", { noremap = true })
+keymap("x", "su", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 keymap("n", "X", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
-keymap("x", "S", "<cmd>lua require('substitute').visual()<cr>", { noremap = true })
 keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
 
 -- Yanky
