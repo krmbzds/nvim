@@ -1,3 +1,13 @@
+-- Keymaps
+local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
+local keymap = vim.api.nvim_set_keymap
+
+--Remap space as leader key (needs to be done before loading lazy.nvim)
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- WhichKey
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
@@ -239,21 +249,6 @@ which_key.setup(wk_setup)
 which_key.register(wk_mappings, wk_opts)
 which_key.register(wk_vmappings, wk_vopts)
 
--- Keymaps
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-local keymap = vim.api.nvim_set_keymap
-
--- theprimeagen
-keymap("n", "J", "mzJ`z", opts)
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
-
---Remap space as leader key (needs to be done before loading lazy.nvim)
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -363,6 +358,11 @@ keymap("n", "]<C-T>", ":ptnext<cr>", opts)
 -- Gitsigns
 keymap("n", "[g", "<cmd>Gitsigns prev_hunk<cr>", opts)
 keymap("n", "]g", "<cmd>Gitsigns next_hunk<cr>", opts)
+
+-- theprimeagen
+keymap("n", "J", "mzJ`z", opts)
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
 
 -- Insert --
 -- Make Control+Backspace delete whole words
