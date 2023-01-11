@@ -128,6 +128,9 @@ keymap("n", "<C-i>", "<C-i>zz", opts)
 keymap("n", "J", "mzJ`z", opts)
 keymap("n", "gJ", "mzgJ`z", opts)
 
+-- Repeat last macro with single key
+keymap("n", ",", "@@", opts)
+
 -- Insert --
 -- Make Control+Backspace delete whole words
 keymap("i", "<C-H>", "<C-W>", opts)
