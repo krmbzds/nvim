@@ -67,6 +67,9 @@ keymap("x", "su", "<cmd>lua require('substitute').visual()<cr>", { noremap = tru
 keymap("n", "X", "<cmd>lua require('substitute.exchange').operator()<cr>", { noremap = true })
 keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>", { noremap = true })
 
+-- Treesitter Node Action
+keymap("n", "<A-n>", ":NodeAction<cr>", opts)
+
 -- Yanky
 -- default mappings
 keymap("n", "p", "<Plug>(YankyPutAfter)", opts)
