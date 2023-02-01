@@ -1,6 +1,5 @@
 local M = {
   "utilyre/barbecue.nvim",
-  branch = "dev", -- omit this if you only want stable updates
   dependencies = {
     "neovim/nvim-lspconfig",
     "SmiteshP/nvim-navic",
