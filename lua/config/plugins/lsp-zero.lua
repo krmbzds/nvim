@@ -113,7 +113,18 @@ function M.config()
   })
 
   mason_null_ls.setup({
-    ensure_installed = { "erb_lint", "jq", "prettierd", "shellcheck", "standardrb", "stylua", "tsserver", "vale" },
+    ensure_installed = {
+      "erb_lint",
+      "jq",
+      "prettierd",
+      "shellcheck",
+      "standardrb",
+      "stylelint",
+      "stylua",
+      "taplo",
+      "tsserver",
+      "vale",
+    },
     automatic_installation = true,
     automatic_setup = true,
   })
