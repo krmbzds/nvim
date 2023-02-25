@@ -57,6 +57,11 @@ function M.config()
     return
   end
 
+  local status_rust_tools_ok, rust_tools = pcall(require, "rust-tools")
+  if not status_rust_tools_ok then
+    return
+  end
+
   local icons = require("config.icons").diagnostics
 
   local lua_ls_opts = require("config.lsp.lua_ls")
@@ -79,9 +84,10 @@ function M.config()
       info = icons.Information,
     },
   })
-  lsp.ensure_installed({ "solargraph", "lua_ls", "tsserver" })
+  lsp.ensure_installed({ "lua_ls", "rust_analyzer", "solargraph", "tsserver" })
   lsp.configure("lua_ls", lua_ls_opts)
   lsp.configure("solargraph", solargraph_opts)
+  lsp.skip_server_setup({ "rust_analyzer" })
   lsp.on_attach(function(client, bufnr)
     if vim.b.lsp_attached then
       return
@@ -97,6 +103,19 @@ function M.config()
   lsp.nvim_workspace(lua_ls_opts)
   lsp.setup()
 
+  local install_root_dir = vim.fn.stdpath("data") .. "/mason"
+  local extension_path = install_root_dir .. "/packages/codelldb/extension/"
+  local codelldb_path = extension_path .. "adapter/codelldb"
+  local liblldb_path = extension_path .. "adapter/libcodelldb.so"
+
+  local rust_lsp = lsp.build_options("rust_analyzer", { single_file_support = false })
+  rust_tools.setup({
+    server = rust_lsp,
+    dap = {
+      adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+    },
+  })
+
   null_ls.setup({
     debug = false,
     sources = {
@@ -107,6 +126,7 @@ function M.config()
       null_ls.builtins.formatting.prettierd.with({
         env = { PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/prettier/config.json") },
       }),
+      null_ls.builtins.formatting.rustfmt,
       null_ls.builtins.formatting.standardrb,
       null_ls.builtins.formatting.stylua,
     },
@@ -114,9 +134,11 @@ function M.config()
 
   mason_null_ls.setup({
     ensure_installed = {
+      "codelldb",
       "erb_lint",
       "jq",
       "prettierd",
+      "rustfmt",
       "shellcheck",
       "standardrb",
       "stylelint",

@@ -17,6 +17,10 @@ function M.config()
     return
   end
 
+  local install_root_dir = vim.fn.stdpath("data") .. "/mason"
+  local extension_path = install_root_dir .. "/packages/codelldb/extension/"
+  local codelldb_path = extension_path .. "adapter/codelldb"
+
   -- nvim-dap
   local dap_config = {
     breakpoint = {
@@ -44,6 +48,28 @@ function M.config()
   vim.fn.sign_define("DapStopped", dap_config.stopped)
 
   dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
+
+  dap.adapters.codelldb = {
+    type = "server",
+    port = "13000",
+    executable = {
+      command = codelldb_path,
+      args = { "--port", "13000" },
+    },
+  }
+  dap.configurations.cpp = {
+    {
+      name = "Launch file",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+      end,
+      cwd = "${workspaceFolder}",
+      stopOnEntry = true,
+    },
+  }
+  dap.configurations.rust = dap.configurations.cpp
 end
 
 return M
