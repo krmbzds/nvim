@@ -164,7 +164,8 @@ function M.config()
 
   local compare = require("cmp.config.compare")
 
-  require("luasnip/loaders/from_vscode").lazy_load() -- friendly-snippets
+  require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
+  require("luasnip.loaders.from_vscode").lazy_load() -- friendly-snippets
 
   local check_backspace = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
