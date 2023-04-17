@@ -166,6 +166,7 @@ function M.config()
 
   require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
   require("luasnip.loaders.from_vscode").lazy_load() -- friendly-snippets
+  luasnip.filetype_extend("ruby", { "rails" })
 
   local check_backspace = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
