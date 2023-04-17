@@ -19,7 +19,7 @@ local M = {
 
     -- Snippets
     "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
+    "krmbzds/friendly-snippets",
 
     -- Miscellaneous
     "j-hui/fidget.nvim",
