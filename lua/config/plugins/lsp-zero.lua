@@ -198,6 +198,11 @@ function M.config()
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
       ["<m-o>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
+      ["<C-u>"] = function()
+        if luasnip.choice_active() then
+          require("luasnip.extras.select_choice")()
+        end
+      end,
       -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-c>"] = cmp.mapping({
         i = cmp.mapping.abort(),
