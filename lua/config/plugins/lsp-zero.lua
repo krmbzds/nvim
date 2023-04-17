@@ -173,6 +173,10 @@ function M.config()
 
   vim.g.cmp_active = true
 
+  luasnip.config.setup({
+    updateevents = "TextChanged,TextChangedI", -- dynamic snippets update as you type
+  })
+
   cmp.setup({
     enabled = function()
       local buftype = vim.api.nvim_buf_get_option(0, "buftype")
