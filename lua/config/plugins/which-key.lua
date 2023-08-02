@@ -209,7 +209,7 @@ function M.config()
       name = "Neotest",
       o = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Toggle summary" },
       n = { "<cmd>lua require('neotest').run.run()<CR>", "Test nearest" },
-      f = { "<cmd>lua require('neotest').run.run(vim.fn.expand(' % '))<CR>", "Test file" },
+      f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Test file" },
       l = { "<cmd>lua require('neotest').run.run_last()<CR>", "Run last test" },
       s = { function()
         local neotest = require("neotest")
