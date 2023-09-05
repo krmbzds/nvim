@@ -14,8 +14,6 @@ local M = {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    "jose-elias-alvarez/null-ls.nvim",
-    "jay-babu/mason-null-ls.nvim",
 
     -- Snippets
     "L3MON4D3/LuaSnip",
@@ -29,16 +27,6 @@ local M = {
 function M.config()
   local status_neodev_ok, neodev = pcall(require, "neodev")
   if not status_neodev_ok then
-    return
-  end
-
-  local status_null_ls_ok, null_ls = pcall(require, "null-ls")
-  if not status_null_ls_ok then
-    return
-  end
-
-  local status_mason_null_ls_ok, mason_null_ls = pcall(require, "mason-null-ls")
-  if not status_mason_null_ls_ok then
     return
   end
 
@@ -96,40 +84,6 @@ function M.config()
   end)
   lsp.nvim_workspace(lua_ls_opts)
   lsp.setup()
-
-  null_ls.setup({
-    debug = false,
-    sources = {
-      null_ls.builtins.diagnostics.shellcheck,
-      null_ls.builtins.diagnostics.vale,
-      null_ls.builtins.formatting.erb_lint,
-      null_ls.builtins.formatting.jq,
-      null_ls.builtins.formatting.prettierd.with({
-        env = { PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/prettier/config.json") },
-      }),
-      null_ls.builtins.formatting.standardrb,
-      null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.xmlformat,
-    },
-  })
-
-  mason_null_ls.setup({
-    ensure_installed = {
-      "erb_lint",
-      "jq",
-      "prettierd",
-      "shellcheck",
-      "standardrb",
-      "stylelint",
-      "stylua",
-      "taplo",
-      "tsserver",
-      "vale",
-      "xmlformatter",
-    },
-    automatic_installation = true,
-    automatic_setup = true,
-  })
 
   local cmp_status_ok, cmp = pcall(require, "cmp")
   if not cmp_status_ok then
