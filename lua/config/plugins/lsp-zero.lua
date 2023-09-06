@@ -49,6 +49,7 @@ function M.config()
 
   local lua_ls_opts = require("config.lsp.lua_ls")
   local ruby_ls_opts = require("config.lsp.ruby_ls")
+  local solargraph_opts = require("config.lsp.solargraph")
 
   require("mason.settings").set({ ui = { border = "rounded" } })
   lsp.preset("recommended")
@@ -67,9 +68,10 @@ function M.config()
       info = icons.Information,
     },
   })
-  lsp.ensure_installed({ "ruby_ls", "lua_ls", "tsserver" })
+  lsp.ensure_installed({ "ruby_ls", "solargraph", "lua_ls", "tsserver" })
   lsp.configure("lua_ls", lua_ls_opts)
   lsp.configure("ruby_ls", ruby_ls_opts)
+  lsp.configure("solargraph", solargraph_opts)
   lsp.on_attach(function(client, bufnr)
     if vim.b.lsp_attached then
       return
