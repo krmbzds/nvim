@@ -88,7 +88,7 @@ function M.config()
   lsp.setup()
 
   vim.diagnostic.config({
-    signs = { severity = { min = vim.diagnostic.severity.HINT } },
+    signs = { severity = { min = vim.diagnostic.severity.WARN } },
     underline = false,
     update_in_insert = false,
     virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
