@@ -1,14 +1,14 @@
 = Neovim Config
 :author: Kerem Bozdas
 :description: My personal Neovim configuration
-:revdate: 2022-11-26
+:revdate: 2024-09-19
 :experimental:
 :autofit-option:
 :sectanchors:
 :neovim-from-scratch: https://github.com/LunarVim/Neovim-from-scratch[Neovim from Scratch]
 :neovim-from-scratch-license: https://github.com/LunarVim/Neovim-from-scratch/blob/master/LICENSE[terms]
 :dotfiles: https://github.com/krmbzds/dotfiles[dotfiles]
-:screenshot: https://user-images.githubusercontent.com/1383035/204065677-fa889e66-cad1-4aa8-bc78-1fd12d25775d.png
+:screenshot: https://github.com/user-attachments/assets/7138455d-7c4a-435d-94cb-f3c1a76a3b06
 
 link:https://dotfyle.com/krmbzds/nvim[image:https://dotfyle.com/krmbzds/nvim/badges/plugins?style=plastic[]]
 link:https://dotfyle.com/krmbzds/nvim[image:https://dotfyle.com/krmbzds/nvim/badges/leaderkey?style=plastic[]]
