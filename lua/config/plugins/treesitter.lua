@@ -41,6 +41,8 @@ function M.config()
       "jsonc",
       "lua",
       "make",
+      "markdown",
+      "markdown_inline",
       "python",
       "ruby",
       "scss",
