@@ -20,7 +20,7 @@ function M.config()
 
   auto_session.setup({
     log_level = "error",
-    auto_session_suppress_dirs = { "/", "~/", "~/Downloads" },
+    suppressed_dirs = { "/", "~/", "~/Downloads" },
     pre_save_cmds = { "Neotree close", "cclose", "lua vim.notify.dismiss()", close_floating_windows },
   })
 end
