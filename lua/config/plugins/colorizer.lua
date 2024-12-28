@@ -24,7 +24,6 @@ return {
         -- Available methods are false / true / "normal" / "lsp" / "both"
         -- True is same as normal
         tailwind = true, -- Enable tailwind colors
-        sass = { enable = true }, -- Enable sass colors
         virtualtext = "■",
       },
       -- all the sub-options of filetypes apply to buftypes
