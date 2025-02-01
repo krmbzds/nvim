@@ -1,5 +1,6 @@
 local M = {
   "numToStr/Comment.nvim",
+  lazy = true,
   keys = { "gc", "gb", "/" },
 }
 

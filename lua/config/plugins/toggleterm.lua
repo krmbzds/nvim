@@ -1,5 +1,6 @@
 local M = {
   "akinsho/nvim-toggleterm.lua",
+  lazy = true,
   keys = "<C-\\>",
 }
 

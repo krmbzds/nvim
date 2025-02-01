@@ -1,5 +1,9 @@
 local M = {
   "shortcuts/no-neck-pain.nvim",
+  cmd = "NoNeckPain",
+  keys = {
+    { "<leader>z", ":NoNeckPain<cr>", desc = "No Neck Pain" },
+  },
 }
 
 function M.config()

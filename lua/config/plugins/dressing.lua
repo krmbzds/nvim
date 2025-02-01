@@ -1,5 +1,7 @@
 local M = {
   "stevearc/dressing.nvim",
+  lazy = true,
+  event = "VeryLazy",
 }
 
 function M.config()

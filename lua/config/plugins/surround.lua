@@ -1,5 +1,11 @@
 local M = {
   "kylechui/nvim-surround",
+  lazy = true,
+  keys = {
+    { "s", mode = { "n", "v" } },
+    { "ds", mode = "n" },
+    { "cs", mode = "n" },
+  },
 }
 
 function M.config()

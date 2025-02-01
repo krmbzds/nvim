@@ -1,5 +1,10 @@
 local M = {
   "hrsh7th/nvim-gtd",
+  lazy = true,
+  event = "VeryLazy",
+  keys = {
+    { "gf", mode = { "n" } },
+  },
 }
 
 function M.config()

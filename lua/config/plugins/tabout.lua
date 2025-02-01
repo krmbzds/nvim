@@ -1,5 +1,6 @@
 local M = {
   "abecodes/tabout.nvim",
+  lazy = true,
 }
 
 function M.config()

@@ -1,5 +1,7 @@
 local M = {
   "nvim-neotest/neotest",
+  lazy = true,
+  cmd = { "Neotest" },
   dependencies = {
     "olimorris/neotest-rspec",
     "nvim-lua/plenary.nvim",

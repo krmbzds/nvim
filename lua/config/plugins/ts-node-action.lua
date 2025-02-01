@@ -1,5 +1,6 @@
 local M = {
   "CKolkey/ts-node-action",
+  lazy = true,
   dependencies = { "nvim-treesitter" },
 }
 

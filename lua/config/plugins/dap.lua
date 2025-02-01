@@ -1,5 +1,7 @@
 local M = {
   "mfussenegger/nvim-dap",
+  lazy = true,
+  event = "VeryLazy",
   dependencies = {
     { "rcarriga/nvim-dap-ui" },
     { "suketa/nvim-dap-ruby" },

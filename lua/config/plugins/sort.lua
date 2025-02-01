@@ -1,5 +1,6 @@
 local M = {
   "sQVe/sort.nvim",
+  lazy = true,
   cmd = { "Sort" },
 }
 

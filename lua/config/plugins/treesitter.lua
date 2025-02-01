@@ -1,6 +1,7 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
+  lazy = true,
   event = "BufReadPost",
   dependencies = {
     "numToStr/Comment.nvim",

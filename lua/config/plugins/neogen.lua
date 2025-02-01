@@ -1,5 +1,6 @@
 local M = {
   "danymat/neogen",
+  lazy = true,
   keys = {
     { "<leader>a", mode = "n" },
   },

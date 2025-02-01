@@ -1,5 +1,7 @@
 local M = {
   "VonHeikemen/lsp-zero.nvim",
+  lazy = true,
+  event = "InsertEnter",
   branch = "v3.x",
   dependencies = {
     -- LSP Support

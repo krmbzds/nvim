@@ -1,5 +1,11 @@
 local M = {
   "tzachar/highlight-undo.nvim",
+  lazy = true,
+  keys = {
+    { "u", desc = "Undo" },
+    { "<C-R>", desc = "Redo" },
+    { "<C-Z>", "<Cmd>normal u<CR>", mode = "i", desc = "Undo" },
+  },
 }
 
 function M.config()

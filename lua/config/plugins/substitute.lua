@@ -1,5 +1,6 @@
 local M = {
   "gbprod/substitute.nvim",
+  lazy = true,
   event = { "CmdlineEnter", "TextYankPost" },
 }
 

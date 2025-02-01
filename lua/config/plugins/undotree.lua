@@ -1,5 +1,10 @@
 local M = {
   "jiaoshijie/undotree",
+  lazy = true,
+  cmd = { "UndotreeToggle" },
+  keys = {
+    { "<leader>u", desc = "Undotree" },
+  },
 }
 
 function M.config()

@@ -1,5 +1,6 @@
 local M = {
   "tversteeg/registers.nvim",
+  lazy = true,
   keys = {
     { '"', mode = "n" },
     { '"', mode = "v" },

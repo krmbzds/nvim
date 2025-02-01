@@ -1,5 +1,9 @@
 local M = {
   "NeogitOrg/neogit",
+  lazy = true,
+  keys = {
+    { "<leader>g", mode = "n" },
+  },
   dependencies = "nvim-lua/plenary.nvim",
   config = true,
 }

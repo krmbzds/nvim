@@ -1,5 +1,7 @@
 local M = {
   "suketa/nvim-dap-ruby",
+  lazy = true,
+  event = "VeryLazy",
 }
 
 function M.config()

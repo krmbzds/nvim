@@ -1,6 +1,8 @@
 local M = {
   "nvim-telescope/telescope.nvim",
+  lazy = true,
   cmd = { "Telescope" },
+  event = { "VeryLazy" },
   dependencies = {
     { "folke/which-key.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },

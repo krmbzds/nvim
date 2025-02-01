@@ -1,5 +1,6 @@
 local M = {
   "chrisgrieser/nvim-origami",
+  lazy = true,
   event = "BufReadPost", -- later or on keypress would prevent saving folds
   opts = true, -- needed even when using default config
 }
