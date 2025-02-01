@@ -4,8 +4,6 @@ local M = {
   dependencies = {
     { "folke/which-key.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-telescope/telescope-frecency.nvim" },
-    { "sudormrfbin/cheatsheet.nvim" },
   },
 }
 
@@ -111,19 +109,10 @@ function M.config()
         override_file_sorter = true, -- override the file sorter
         case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       },
-      frecency = {
-        auto_validate = false,
-        db_safe_mode = false,
-        default_workspace = "CWD",
-        ignore_patterns = ignore.file_ignore_patterns,
-        show_unindexed = false,
-        use_sqlite = false,
-      },
     },
   })
 
   telescope.load_extension("fzf")
-  telescope.load_extension("frecency")
   telescope.load_extension("notify")
 end
 

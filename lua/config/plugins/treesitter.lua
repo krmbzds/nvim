@@ -7,7 +7,6 @@ local M = {
     "windwp/nvim-autopairs",
     "RRethy/vim-illuminate",
     "abecodes/tabout.nvim",
-    "JoosepAlviste/nvim-ts-context-commentstring",
     "RRethy/nvim-treesitter-endwise",
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",

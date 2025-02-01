@@ -33,10 +33,8 @@ function M.config()
     { "<leader>h", "<cmd>set invhlsearch<CR>", desc = "Toggle Highlight" },
     { "<leader>f", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find File", },
     { "<leader>P", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Projects" },
-    { "<leader>r", "<cmd>Telescope frecency theme=dropdown previewer=false<cr>", desc = "Recent Files" },
     { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", desc = "Undotree" },
     { "<leader>z", "<cmd>:NoNeckPain<cr>", desc = "No Neck Pain" },
-    { "<leader>?", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
 
     -- Buffers
     { "<leader>b", group = "Buffers" },
@@ -117,7 +115,6 @@ function M.config()
     { "<leader>sf", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", desc = "Find files" },
     { "<leader>sg", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Live Grep" },
     { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
-    { "<leader>sc", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
     { "<leader>sl", "<cmd>Telescope resume<cr>", desc = "Last Search" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
