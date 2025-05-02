@@ -2,6 +2,9 @@ local M = {
   "chrisgrieser/nvim-origami",
   lazy = true,
   event = "BufReadPost", -- later or on keypress would prevent saving folds
+  dependencies = {
+    "kevinhwang91/nvim-ufo",
+  },
   opts = true, -- needed even when using default config
 }
 
@@ -14,7 +17,9 @@ function M.config()
   origami.setup({
     keepFoldsAcrossSessions = true,
     pauseFoldsOnSearch = true,
-    setupFoldKeymaps = true,
+    foldKeymaps = {
+      setup = true,
+    },
   })
 end
 
