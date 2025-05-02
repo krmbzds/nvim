@@ -1,9 +1,13 @@
 local M = {
   "hedyhli/outline.nvim",
   cmd = { "Outline", "OutlineOpen" },
-  event = "VeryLazy",
   dependencies = {
     "msr1k/outline-asciidoc-provider.nvim",
+  },
+  lazy = true,
+  event = "BufReadPost",
+  keys = {
+    { "<leader>o", "<cmd>Outline<cr>" },
   },
 }
 
