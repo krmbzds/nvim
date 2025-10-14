@@ -1,11 +1,9 @@
 local M = {
-  "VonHeikemen/lsp-zero.nvim",
+  "neovim/nvim-lspconfig",
   lazy = true,
-  event = "InsertEnter",
-  branch = "v3.x",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     -- LSP Support
-    "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "folke/neodev.nvim",
@@ -28,94 +26,139 @@ local M = {
 }
 
 function M.config()
-  local status_neodev_ok, neodev = pcall(require, "neodev")
-  if not status_neodev_ok then
-    return
-  end
+  -- Setup Mason
+  require("mason").setup({
+    ui = {
+      border = "rounded",
+    },
+  })
 
-  local status_lsp_zero_ok, lsp_zero = pcall(require, "lsp-zero")
-  if not status_lsp_zero_ok then
-    return
-  end
-
-  local status_mason_ok, mason = pcall(require, "mason")
-  if not status_mason_ok then
-    return
-  end
-
-  local status_mason_settings_ok, mason_settings = pcall(require, "mason.settings")
-  if not status_mason_settings_ok then
-    return
-  end
-
-  local status_mason_lspconfig_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-  if not status_mason_lspconfig_ok then
-    return
-  end
-
-  local status_navic_ok, navic = pcall(require, "nvim-navic")
-  if not status_navic_ok then
-    return
-  end
-
-  local status_fidget_ok, fidget = pcall(require, "fidget")
-  if not status_fidget_ok then
-    return
-  end
-
-  local icons = require("config.icons").diagnostics
-
-  local lua_ls_opts = require("config.lsp.lua_ls")
-  local solargraph_opts = require("config.lsp.solargraph")
-
-  mason.setup({})
-  mason_settings.set({ ui = { border = "rounded" } })
-  mason_lspconfig.setup({
+  -- Setup Mason LSP Config
+  require("mason-lspconfig").setup({
     ensure_installed = { "solargraph", "lua_ls", "ts_ls" },
     handlers = {
-      lsp_zero.default_setup,
-    },
-  })
-  lsp_zero.preset("recommended")
-  lsp_zero.set_preferences({
-    suggest_lsp_servers = true,
-    setup_servers_on_start = true,
-    set_lsp_keymaps = true,
-    configure_diagnostics = true,
-    cmp_capabilities = true,
-    manage_nvim_cmp = false,
-    call_servers = "local",
-    sign_icons = {
-      error = icons.Error,
-      warn = icons.Warning,
-      hint = icons.Hint,
-      info = icons.Information,
-    },
-  })
-  lsp_zero.configure("lua_ls", lua_ls_opts)
-  lsp_zero.configure("solargraph", solargraph_opts)
-  lsp_zero.on_attach(function(client, bufnr)
-    if vim.b.lsp_attached then
-      return
-    end
-    vim.b.lsp_attached = true
-    if client.name == "lua_ls" then
-      neodev.setup({})
-    end
-    if client.server_capabilities["documentSymbolProvider"] then
-      navic.attach(client, bufnr)
-    end
-  end)
-  -- lsp.nvim_workspace(lua_ls_opts)
-  lsp_zero.setup()
+      -- Default handler for all servers
+      function(server_name)
+        require("lspconfig")[server_name].setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          on_attach = function(client, bufnr)
+            -- Prevent multiple attachments
+            if vim.b.lsp_attached then
+              return
+            end
+            vim.b.lsp_attached = true
 
+            -- Setup neodev for lua_ls
+            if client.name == "lua_ls" then
+              require("neodev").setup({})
+            end
+
+            -- Setup navic for breadcrumbs
+            local navic_ok, navic = pcall(require, "nvim-navic")
+            if navic_ok and client.server_capabilities.documentSymbolProvider then
+              navic.attach(client, bufnr)
+            end
+          end,
+        })
+      end,
+      -- Custom handler for lua_ls
+      ["lua_ls"] = function()
+        local lua_ls_opts = require("config.lsp.lua_ls")
+        require("lspconfig").lua_ls.setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          settings = lua_ls_opts.settings,
+          on_attach = function(client, bufnr)
+            -- Prevent multiple attachments
+            if vim.b.lsp_attached then
+              return
+            end
+            vim.b.lsp_attached = true
+
+            -- Setup neodev
+            require("neodev").setup({})
+
+            -- Setup navic for breadcrumbs
+            local navic_ok, navic = pcall(require, "nvim-navic")
+            if navic_ok and client.server_capabilities.documentSymbolProvider then
+              navic.attach(client, bufnr)
+            end
+          end,
+        })
+      end,
+      -- Custom handler for solargraph
+      ["solargraph"] = function()
+        local solargraph_opts = require("config.lsp.solargraph")
+        require("lspconfig").solargraph.setup({
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+          cmd = solargraph_opts.cmd,
+          filetypes = solargraph_opts.filetypes,
+          init_options = solargraph_opts.init_options,
+          root_dir = solargraph_opts.root_dir,
+          settings = solargraph_opts.settings,
+          on_attach = function(client, bufnr)
+            -- Prevent multiple attachments
+            if vim.b.lsp_attached then
+              return
+            end
+            vim.b.lsp_attached = true
+
+            -- Setup navic for breadcrumbs
+            local navic_ok, navic = pcall(require, "nvim-navic")
+            if navic_ok and client.server_capabilities.documentSymbolProvider then
+              navic.attach(client, bufnr)
+            end
+          end,
+        })
+      end,
+    },
+  })
+
+  -- Setup diagnostics
+  local icons = require("config.icons").diagnostics
   vim.diagnostic.config({
-    signs = { severity = { min = vim.diagnostic.severity.WARN } },
+    signs = {
+      severity = { min = vim.diagnostic.severity.WARN },
+      text = {
+        [vim.diagnostic.severity.ERROR] = icons.Error,
+        [vim.diagnostic.severity.WARN] = icons.Warning,
+        [vim.diagnostic.severity.HINT] = icons.Hint,
+        [vim.diagnostic.severity.INFO] = icons.Information,
+      },
+    },
     underline = false,
     update_in_insert = false,
     virtual_text = { severity = { min = vim.diagnostic.severity.ERROR } },
+    float = {
+      border = "rounded",
+    },
   })
 
+  -- Setup LSP keymaps
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      local opts = { buffer = ev.buf }
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+      vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+      vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+      vim.keymap.set("n", "<space>wl", function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+      end, opts)
+      vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+      vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "<space>f", function()
+        vim.lsp.buf.format({ async = true })
+      end, opts)
+    end,
+  })
+
+  -- Setup completion
   local cmp_status_ok, cmp = pcall(require, "cmp")
   if not cmp_status_ok then
     return
@@ -190,7 +233,6 @@ function M.config()
           require("luasnip.extras.select_choice")()
         end
       end,
-      -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ["<C-c>"] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
@@ -211,8 +253,6 @@ function M.config()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
       ["<CR>"] = cmp.mapping.confirm({ select = false }),
       ["<Right>"] = cmp.mapping.confirm({ select = true }),
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -227,7 +267,6 @@ function M.config()
         elseif vim.api.nvim_get_mode().mode == "i" then
           tabout.tabout()
         elseif check_backspace() then
-          -- cmp.complete()
           fallback()
         else
           fallback()
@@ -252,7 +291,6 @@ function M.config()
     formatting = {
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
-        -- NOTE: order matters
         vim_item.menu = ({
           luasnip = "",
           nvim_lsp = "",
@@ -266,7 +304,7 @@ function M.config()
     sources = {
       {
         name = "nvim_lsp",
-        filter = function(entry, _) -- entry, ctx
+        filter = function(entry, _)
           local kind = require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
           if kind == "Text" then
             return true
@@ -279,7 +317,7 @@ function M.config()
       {
         name = "buffer",
         group_index = 2,
-        filter = function(_, ctx) -- entry, ctx
+        filter = function(_, ctx)
           if not contains(buffer_fts, ctx.prev_context.filetype) then
             return true
           end
@@ -292,11 +330,9 @@ function M.config()
       comparators = {
         compare.offset,
         compare.exact,
-        -- compare.scopes,
         compare.score,
         compare.recently_used,
         compare.locality,
-        -- compare.kind,
         compare.sort_text,
         compare.length,
         compare.order,
@@ -307,7 +343,6 @@ function M.config()
       select = false,
     },
     window = {
-      --[[ documentation = false, ]]
       documentation = {
         border = "rounded",
         winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
@@ -334,7 +369,39 @@ function M.config()
     },
   })
 
-  fidget.setup()
+  -- Setup fidget with vim.notify override
+  require("fidget").setup({
+    notification = {
+      override_vim_notify = true, -- Route vim.notify() to fidget.nvim
+      window = {
+        winblend = 0, -- Make notifications slightly transparent
+        border = "rounded", -- Use rounded borders for notifications
+        x_padding = 1,
+        y_padding = 1,
+        max_width = 0.6, -- 60% of editor width
+        max_height = 10,
+      },
+      view = {
+        stack_upwards = true,
+        icon_separator = " ",
+        group_separator = "",
+        group_separator_hl = "",
+      },
+    },
+    progress = {
+      display = {
+        render_limit = 5,
+        done_ttl = 2,
+        done_icon = "✔",
+        done_style = "Constant",
+        progress_ttl = math.huge,
+        progress_icon = { "dots" },
+        progress_style = "WarningMsg",
+        group_style = "Title",
+        icon_style = "Question",
+      },
+    },
+  })
 end
 
 return M

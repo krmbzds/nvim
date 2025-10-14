@@ -29,7 +29,7 @@ function M.config()
       "git_status",
       "buffers",
     },
-    close_if_last_window = "false",
+    close_if_last_window = false,
     popup_border_style = "rounded", -- "double", "none", "rounded", "shadow", "single" or "solid"
     default_component_configs = {
       indent = {
@@ -133,7 +133,7 @@ function M.config()
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes instead of relying on nvim autocmd events.
-      async_directory_scan = false, -- Scan files synchronously
+      async_directory_scan = "never", -- Scan files synchronously
       window = {
         mappings = {
           ["o"] = "system_open",
