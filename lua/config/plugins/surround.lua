@@ -14,20 +14,7 @@ function M.config()
     return
   end
 
-  surround.setup({
-    keymaps = {
-      insert = false,
-      insert_line = false,
-      normal_cur = false,
-      normal_line = false,
-      normal_cur_line = false,
-      visual_line = false,
-      normal = "s",
-      visual = "s",
-      delete = "ds",
-      change = "cs",
-    },
-  })
+  surround.setup({})
 end
 
 return M
