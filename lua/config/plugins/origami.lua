@@ -12,7 +12,18 @@ function M.config()
   end
 
   origami.setup({
-    useLspFoldsWithTreesitterFallback = true,
+    useLspFoldsWithTreesitterFallback = {
+      enable = true,
+      foldmethodIfNeitherIsAvailable = function(bufnr)
+        local ft = vim.bo[bufnr].filetype
+        local ft_filter = { "help", "text" }
+        if vim.list_contains(ft_filter, ft) then
+          return "manual"
+        else
+          return "indent"
+        end
+      end,
+    },
     pauseFoldsOnSearch = true,
     foldtext = {
       enabled = true,
