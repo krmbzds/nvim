@@ -10,6 +10,13 @@ function M.config()
     return
   end
 
+  local function close_buffer()
+    for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+      pcall(client.stop, client)
+    end
+    pcall(require("bufdelete").bufdelete, 0, false)
+  end
+
   which_key.setup({
     preset = "modern",
     filter = function(mapping)
@@ -29,7 +36,7 @@ function M.config()
     { "<leader>a", "<cmd>lua require('neogen').generate({})<cr>", desc = "Annotate" },
     { "<leader>w", "<cmd>w!<CR>", desc = "Save" },
     { "<leader>q", "<cmd>q!<CR>", desc = "Quit" },
-    { "<leader>c", "<cmd>lua require('bufdelete').bufdelete(0, false)<CR>", desc = "Close Buffer" },
+    { "<leader>c", close_buffer, desc = "Close Buffer" },
     { "<leader>C", "<cmd>lua require('bufdelete').bufdelete(0, true)<cr>", desc = "Close Unsaved Buffer" },
     { "<leader>h", "<cmd>set invhlsearch<CR>", desc = "Toggle Highlight" },
     { "<leader>f", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find File", },
