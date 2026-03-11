@@ -1,5 +1,5 @@
 local ignore = {
-  barbecue_ignore_patterns = {
+  dropbar_ignore_patterns = {
     "DressingSelect",
     "TelescopePrompt",
     "Undotree",

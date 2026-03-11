@@ -52,12 +52,6 @@ function M.config()
             if client.name == "lua_ls" then
               require("neodev").setup({})
             end
-
-            -- Setup navic for breadcrumbs
-            local navic_ok, navic = pcall(require, "nvim-navic")
-            if navic_ok and client.server_capabilities.documentSymbolProvider then
-              navic.attach(client, bufnr)
-            end
           end,
         })
       end,
@@ -76,12 +70,6 @@ function M.config()
 
             -- Setup neodev
             require("neodev").setup({})
-
-            -- Setup navic for breadcrumbs
-            local navic_ok, navic = pcall(require, "nvim-navic")
-            if navic_ok and client.server_capabilities.documentSymbolProvider then
-              navic.attach(client, bufnr)
-            end
           end,
         })
       end,
@@ -101,12 +89,6 @@ function M.config()
               return
             end
             vim.b.lsp_attached = true
-
-            -- Setup navic for breadcrumbs
-            local navic_ok, navic = pcall(require, "nvim-navic")
-            if navic_ok and client.server_capabilities.documentSymbolProvider then
-              navic.attach(client, bufnr)
-            end
           end,
         })
       end,

@@ -71,3 +71,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+-- Clear WinBar & WinBarNC background
+vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+  group = vim.api.nvim_create_augroup("WinBarHlClearBg", { clear = true }),
+  callback = CLEAR_WINBAR_BG,
+})
