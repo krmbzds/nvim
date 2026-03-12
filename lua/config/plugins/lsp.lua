@@ -1,3 +1,4 @@
+local api = vim.api
 local M = {
   "neovim/nvim-lspconfig",
   lazy = true,
@@ -116,8 +117,8 @@ function M.config()
   })
 
   -- Setup LSP keymaps
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  api.nvim_create_autocmd("LspAttach", {
+    group = api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
       local opts = { buffer = ev.buf }
       vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
@@ -179,8 +180,8 @@ function M.config()
   luasnip.filetype_extend("ruby", { "rails" })
 
   local check_backspace = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    local line, col = unpack(api.nvim_win_get_cursor(0))
+    return col ~= 0 and api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
   vim.g.cmp_active = true
@@ -191,7 +192,7 @@ function M.config()
 
   cmp.setup({
     enabled = function()
-      local buftype = vim.api.nvim_buf_get_option(0, "buftype")
+      local buftype = api.nvim_buf_get_option(0, "buftype")
       if buftype == "prompt" then
         return false
       end
@@ -246,7 +247,7 @@ function M.config()
           luasnip.expand_or_jump()
         elseif luasnip.jumpable(1) then
           luasnip.jump(1)
-        elseif vim.api.nvim_get_mode().mode == "i" then
+        elseif api.nvim_get_mode().mode == "i" then
           tabout.tabout()
         elseif check_backspace() then
           fallback()

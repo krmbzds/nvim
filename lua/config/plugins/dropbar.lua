@@ -29,11 +29,12 @@ function M.config()
     },
     bar = {
       enable = function(buf, win)
+        local api = vim.api
         local ft = vim.bo[buf].filetype
         if vim.tbl_contains(ignore.dropbar_ignore_patterns, ft) then
           return false
         end
-        return vim.api.nvim_win_get_config(win).relative == ""
+        return api.nvim_win_get_config(win).relative == ""
       end,
     },
   })

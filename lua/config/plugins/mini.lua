@@ -3,6 +3,7 @@ local M = {
 }
 
 function M.config()
+  local api = vim.api
   local status_ok, mini_indentscope = pcall(require, "mini.indentscope")
   if not status_ok then
     return
@@ -10,7 +11,7 @@ function M.config()
 
   local status_dracula_ok, dracula = pcall(require, "dracula")
   if status_dracula_ok then
-    vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = dracula.colors().gutter_fg })
+    api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = dracula.colors().gutter_fg })
   end
 
   mini_indentscope.setup({

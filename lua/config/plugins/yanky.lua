@@ -1,3 +1,4 @@
+local api = vim.api
 local M = {
   "gbprod/yanky.nvim",
 }
@@ -10,7 +11,7 @@ function M.config()
 
   yanky.setup({})
 
-  vim.api.nvim_create_user_command("YankHistory", function()
+  api.nvim_create_user_command("YankHistory", function()
     local status_telescope_ok, telescope = pcall(require, "telescope")
     if status_telescope_ok then
       telescope.load_extension("yank_history")

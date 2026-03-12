@@ -159,9 +159,10 @@ function M.config()
       },
       commands = {
         system_open = function(state)
+          local api = vim.api
           local node = state.tree:get_node()
           local path = node:get_id()
-          vim.api.nvim_command(string.format("silent !open '%s'", path))
+          api.nvim_command(string.format("silent !open '%s'", path))
         end,
       },
     },

@@ -1,4 +1,6 @@
-vim.api.nvim_create_autocmd({ "FileType" }, {
+local api = vim.api
+
+api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo" },
   callback = function()
     vim.cmd([[
@@ -8,7 +10,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
+api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "asciidoc", "gitcommit", "markdown" },
   callback = function()
     ---@diagnostic disable
@@ -18,34 +20,34 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd("tabdo wincmd =")
   end,
 })
 
-vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
+api.nvim_create_autocmd({ "CmdWinEnter" }, {
   callback = function()
     vim.cmd("quit")
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd("set formatoptions-=cro")
   end,
 })
 
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
   end,
 })
 
 -- Leap
-local leap_illuminate = vim.api.nvim_create_augroup("LeapIlluminate", { clear = true })
+local leap_illuminate = api.nvim_create_augroup("LeapIlluminate", { clear = true })
 
-vim.api.nvim_create_autocmd("User", {
+api.nvim_create_autocmd("User", {
   pattern = "LeapEnter",
   callback = function()
     require("illuminate").pause()
@@ -53,7 +55,7 @@ vim.api.nvim_create_autocmd("User", {
   group = leap_illuminate,
 })
 
-vim.api.nvim_create_autocmd("User", {
+api.nvim_create_autocmd("User", {
   pattern = "LeapLeave",
   callback = function()
     require("illuminate").resume()
@@ -62,18 +64,18 @@ vim.api.nvim_create_autocmd("User", {
 })
 
 -- Go to last cursor position when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+api.nvim_create_autocmd("BufReadPost", {
   callback = function()
-    local mark = vim.api.nvim_buf_get_mark(0, '"')
-    local lcount = vim.api.nvim_buf_line_count(0)
+    local mark = api.nvim_buf_get_mark(0, '"')
+    local lcount = api.nvim_buf_line_count(0)
     if mark[1] > 0 and mark[1] <= lcount then
-      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+      pcall(api.nvim_win_set_cursor, 0, mark)
     end
   end,
 })
 
 -- Clear WinBar & WinBarNC background
-vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
-  group = vim.api.nvim_create_augroup("WinBarHlClearBg", { clear = true }),
+api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+  group = api.nvim_create_augroup("WinBarHlClearBg", { clear = true }),
   callback = CLEAR_WINBAR_BG,
 })

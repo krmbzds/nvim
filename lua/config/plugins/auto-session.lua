@@ -13,7 +13,7 @@ function M.config()
     for _, win in ipairs(api.nvim_list_wins()) do
       local config = api.nvim_win_get_config(win)
       if config.relative ~= "" then
-        vim.api.nvim_win_close(win, false)
+        api.nvim_win_close(win, false)
       end
     end
   end
