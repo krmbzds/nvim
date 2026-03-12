@@ -8,14 +8,17 @@ function M.config()
     return
   end
 
-  local status_telescope_ok, telescope = pcall(require, "telescope")
-  if not status_telescope_ok then
-    return
-  end
-
-  telescope.load_extension("yank_history")
-
   yanky.setup({})
+
+  vim.api.nvim_create_user_command("YankHistory", function()
+    local status_telescope_ok, telescope = pcall(require, "telescope")
+    if status_telescope_ok then
+      telescope.load_extension("yank_history")
+      telescope.extensions.yank_history.yank_history()
+    else
+      vim.notify("Telescope not found!", vim.log.levels.WARN)
+    end
+  end, {})
 end
 
 return M

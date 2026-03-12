@@ -2,6 +2,7 @@ local M = {
   "stevearc/conform.nvim",
   lazy = true,
   event = { "InsertEnter", "TextChanged", "TextChangedI", "BufWritePre" },
+  cmd = { "Format" },
   opts = {},
 }
 

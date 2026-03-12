@@ -26,6 +26,9 @@ local M = {
 }
 
 function M.config()
+  -- Setup Neodev
+  require("neodev").setup({})
+
   -- Setup Mason
   require("mason").setup({
     ui = {
@@ -67,9 +70,6 @@ function M.config()
               return
             end
             vim.b.lsp_attached = true
-
-            -- Setup neodev
-            require("neodev").setup({})
           end,
         })
       end,
