@@ -1,49 +1,118 @@
 local M = {
-  "krmbzds/project.nvim",
+  "DrKJeff16/project.nvim",
+  dependencies = { "nvim-telescope/telescope.nvim" },
+  lazy = true,
+  cmd = {
+    "Project",
+    "ProjectAdd",
+    "ProjectConfig",
+    "ProjectDelete",
+    "ProjectExport",
+    "ProjectHealth",
+    "ProjectHistory",
+    "ProjectImport",
+    "ProjectRecents",
+    "ProjectRoot",
+    "ProjectSession",
+    "ProjectTelescope",
+  },
 }
 
 function M.config()
-  local status_ok, project = pcall(require, "project_nvim")
+  local status_ok, project = pcall(require, "project")
   if not status_ok then
     return
   end
 
   project.setup({
-    ---@usage set to false to disable project.nvim.
-    --- This is on by default since it's currently the expected behavior.
-    active = true,
-
-    on_config_done = nil,
-
-    ---@usage set to true to disable setting the current-working directory
-    --- Manual mode doesn't automatically change your root directory, so you have
-    --- the option to manually do so using `:ProjectRoot` command.
+    before_attach = nil,
+    on_attach = nil,
+    lsp = {
+      enabled = true,
+      ignore = {},
+      use_pattern_matching = false,
+      no_fallback = false,
+    },
     manual_mode = false,
-
-    ---@usage Methods of detecting the root directory
-    --- Allowed values: **"lsp"** uses the native neovim lsp
-    --- **"pattern"** uses vim-rooter like glob pattern matching. Here
-    --- order matters: if one is not detected, the other is used as fallback. You
-    --- can also delete or rearangne the detection methods.
-    -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
-    detection_methods = { "pattern" },
-
-    ---@usage patterns used to detect root dir, when **"pattern"** is in detection_methods
-    patterns = { ".git", "Makefile", "Gemfile", "package.json" },
-
-    ---@ Show hidden files in telescope when searching for files in a project
+    patterns = {
+      ".git",
+      "Gemfile",
+    },
+    different_owners = {
+      allow = false,
+      notify = true,
+    },
+    enable_autochdir = false,
     show_hidden = false,
-
-    ---@usage When set to false, you will get a message when project.nvim changes your directory.
-    -- When set to false, you will get a message when project.nvim changes your directory.
+    exclude_dirs = {},
     silent_chdir = true,
-
-    ---@usage list of lsp client names to ignore when using **lsp** detection. eg: { "efm", ... }
-    ignore_lsp = {},
-
-    ---@type string
-    ---@usage path to store the project history for use in telescope
+    scope_chdir = "global",
     datapath = vim.fn.stdpath("data"),
+    historysize = 100,
+    log = {
+      enabled = false,
+      max_size = 1.1,
+      logpath = vim.fn.stdpath("state"),
+    },
+    snacks = {
+      enabled = false,
+      opts = {
+        hidden = false,
+        sort = "newest",
+        title = "Select Project",
+        layout = "select",
+        -- icon = {},
+        -- path_icons = {},
+      },
+    },
+    fzf_lua = { enabled = false },
+    picker = {
+      enabled = false,
+      hidden = false,
+      sort = "newest",
+    },
+    disable_on = {
+      ft = {
+        "",
+        "NvimTree",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "alpha",
+        "checkhealth",
+        "lazy",
+        "log",
+        "ministarter",
+        "neo-tree",
+        "notify",
+        "nvim-pack",
+        "packer",
+        "qf",
+      },
+      bt = { "help", "nofile", "nowrite", "terminal" },
+    },
+    telescope = {
+      sort = "newest",
+      prefer_file_browser = false,
+      disable_file_picker = false,
+      mappings = {
+        n = {
+          b = "browse_project_files",
+          d = "delete_project",
+          f = "find_project_files",
+          r = "recent_project_files",
+          s = "search_in_project_files",
+          w = "change_working_directory",
+        },
+        i = {
+          ["<C-b>"] = "browse_project_files",
+          ["<C-d>"] = "delete_project",
+          ["<C-f>"] = "find_project_files",
+          ["<C-r>"] = "recent_project_files",
+          ["<C-s>"] = "search_in_project_files",
+          ["<C-w>"] = "change_working_directory",
+        },
+      },
+    },
   })
 
   local tele_ok, telescope = pcall(require, "telescope")
