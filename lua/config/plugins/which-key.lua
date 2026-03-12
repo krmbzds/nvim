@@ -132,6 +132,7 @@ function M.config()
     { "<leader>sp", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Projects" },
     { "<leader>sy", "<cmd>Telescope yank_history<cr>", desc = "Yank History" },
     { "<leader>sG", "<cmd>GrepAppInput<cr>", desc = "Web Grep" },
+    { "<leader>sd", "<cmd>Lazy load dropbar.nvim | lua require('dropbar.api').pick()<cr>", desc = "Dropbar Symbols" },
 
     -- Tabs
     { "<leader>t", group = "Tabs" },

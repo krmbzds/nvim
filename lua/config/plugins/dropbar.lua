@@ -3,6 +3,7 @@ local M = {
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
 }
 
