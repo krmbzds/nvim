@@ -14,7 +14,7 @@ function M.config()
     for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
       pcall(client.stop, client)
     end
-    pcall(require("bufdelete").bufdelete, 0, false)
+    pcall(require("snacks").bufdelete, 0)
   end
 
   which_key.setup({
@@ -37,7 +37,6 @@ function M.config()
     { "<leader>w", "<cmd>w!<CR>", desc = "Save" },
     { "<leader>q", "<cmd>q!<CR>", desc = "Quit" },
     { "<leader>c", close_buffer, desc = "Close Buffer" },
-    { "<leader>C", "<cmd>lua require('bufdelete').bufdelete(0, true)<cr>", desc = "Close Unsaved Buffer" },
     { "<leader>h", "<cmd>set invhlsearch<CR>", desc = "Toggle Highlight" },
     { "<leader>f", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find File", },
     { "<leader>P", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Projects" },
@@ -85,7 +84,7 @@ function M.config()
     { "<leader>pD", "<cmd>lua require('lazy').debug()<cr>", desc = "Debug" },
     { "<leader>pH", "<cmd>lua require('lazy').help()<cr>", desc = "Help" },
     { "<leader>pB", "<cmd>lua require('lazy').clear()<cr>", desc = "Clear" },
-    { "<leader>pn", "<cmd>Telescope notify theme=ivy<cr>", desc = "Notifications" },
+    { "<leader>pn", "<cmd>lua require('snacks').notifier.show_history()<cr>", desc = "Notifications" },
     { "<leader>pm", "<cmd>Mason<cr>", desc = "Mason" },
 
     -- Git
@@ -152,10 +151,10 @@ function M.config()
     { "<leader>ns", "<cmd>lua require('neotest').run.run({ suite = true })<CR>", desc = "Test suite" },
 
     -- Visual mode mappings
-    { "<leader>/", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Comment", mode = "v", },
+    { "<leader>/", "gc", desc = "Comment", mode = "v", remap = true },
     { "<leader>g", group = "Git", mode = "v" },
-    { "<leader>go", "<cmd>lua require('gitlinker').get_buf_range_url('v', { action_callback = require('gitlinker.actions').open_in_browser })<CR>", desc = "Open in browser", mode = "v", },
-    { "<leader>gc", "<cmd>lua require('gitlinker').get_buf_range_url('v', { action_callback = require('gitlinker.actions').copy_to_clipboard })<CR>", desc = "Copy to clipboard", mode = "v", },
+    { "<leader>go", "<cmd>lua require('snacks').gitbrowse()<CR>", desc = "Open in browser", mode = "v", },
+    { "<leader>gc", "<cmd>lua require('snacks').gitbrowse({ action = 'copy' })<CR>", desc = "Copy to clipboard", mode = "v", },
   })
 end
 -- stylua: ignore end
