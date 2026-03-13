@@ -4,16 +4,13 @@ local M = {
   lazy = true,
   event = "BufReadPost",
   dependencies = {
-    "numToStr/Comment.nvim",
     "windwp/nvim-autopairs",
     "RRethy/vim-illuminate",
     "abecodes/tabout.nvim",
     "RRethy/nvim-treesitter-endwise",
-    "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-textobjects",
     "windwp/nvim-ts-autotag",
     "kylechui/nvim-surround",
-    "kevinhwang91/nvim-bqf",
   },
 }
 
@@ -124,15 +121,6 @@ function M.config()
         enable = true,
         swap_next = { ["]["] = "@parameter.inner" },
         swap_previous = { ["[]"] = "@parameter.inner" },
-      },
-    },
-    textsubjects = {
-      enable = true,
-      prev_selection = ",", -- (Optional) keymap to select the previous selection
-      keymaps = {
-        ["."] = "textsubjects-smart",
-        [";"] = "textsubjects-container-outer",
-        ["i;"] = "textsubjects-container-inner",
       },
     },
   })
