@@ -7,7 +7,6 @@ local M = {
     -- LSP Support
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "folke/neodev.nvim",
 
     -- Autocompletion
     "hrsh7th/nvim-cmp",
@@ -27,9 +26,6 @@ local M = {
 }
 
 function M.config()
-  -- Setup Neodev
-  require("neodev").setup({})
-
   -- Setup Mason
   require("mason").setup({
     ui = {
@@ -39,7 +35,7 @@ function M.config()
 
   -- Setup Mason LSP Config
   require("mason-lspconfig").setup({
-    ensure_installed = { "solargraph", "lua_ls", "ts_ls" },
+    ensure_installed = { "ruby_lsp", "lua_ls", "ts_ls" },
     handlers = {
       -- Default handler for all servers
       function(server_name)
@@ -51,11 +47,6 @@ function M.config()
               return
             end
             vim.b.lsp_attached = true
-
-            -- Setup neodev for lua_ls
-            if client.name == "lua_ls" then
-              require("neodev").setup({})
-            end
           end,
         })
       end,
@@ -74,16 +65,13 @@ function M.config()
           end,
         })
       end,
-      -- Custom handler for solargraph
-      ["solargraph"] = function()
-        local solargraph_opts = require("config.lsp.solargraph")
-        require("lspconfig").solargraph.setup({
+      -- Custom handler for ruby_lsp
+      ["ruby_lsp"] = function()
+        require("lspconfig").ruby_lsp.setup({
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          cmd = solargraph_opts.cmd,
-          filetypes = solargraph_opts.filetypes,
-          init_options = solargraph_opts.init_options,
-          root_dir = solargraph_opts.root_dir,
-          settings = solargraph_opts.settings,
+          init_options = {
+            formatter = "none",
+          },
           on_attach = function(client, bufnr)
             -- Prevent multiple attachments
             if vim.b.lsp_attached then
