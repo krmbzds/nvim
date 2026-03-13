@@ -34,10 +34,10 @@ function M.config()
   which_key.add({
     -- General mappings
     { "<leader>a", "<cmd>lua require('neogen').generate({})<cr>", desc = "Annotate" },
-    { "<leader>w", "<cmd>w!<CR>", desc = "Save" },
-    { "<leader>q", "<cmd>q!<CR>", desc = "Quit" },
+    { "<leader>w", "<cmd>w!<cr>", desc = "Save" },
+    { "<leader>q", "<cmd>q!<cr>", desc = "Quit" },
     { "<leader>c", close_buffer, desc = "Close Buffer" },
-    { "<leader>h", "<cmd>set invhlsearch<CR>", desc = "Toggle Highlight" },
+    { "<leader>h", "<cmd>set invhlsearch<cr>", desc = "Toggle Highlight" },
     { "<leader>f", "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", desc = "Find File", },
     { "<leader>P", "<cmd>lua require('telescope').extensions.projects.projects()<cr>", desc = "Projects" },
     { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>", desc = "Undotree" },
@@ -85,6 +85,7 @@ function M.config()
     { "<leader>pH", "<cmd>lua require('lazy').help()<cr>", desc = "Help" },
     { "<leader>pB", "<cmd>lua require('lazy').clear()<cr>", desc = "Clear" },
     { "<leader>pn", "<cmd>lua require('snacks').notifier.show_history()<cr>", desc = "Notifications" },
+    { "<leader>pM", "<cmd>messages<cr>", desc = "Messages" },
     { "<leader>pm", "<cmd>Mason<cr>", desc = "Mason" },
 
     -- Git
@@ -102,8 +103,9 @@ function M.config()
     { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch" },
     { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit" },
     { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff" },
-    { "<leader>gO", "<cmd>GitBlameOpenCommitURL<cr>", desc = "Open in browser" },
-    { "<leader>gh", "<cmd>GitBlameCopySHA<cr>", desc = "Copy hash" },
+    { "<leader>gO", "<cmd>GitBrowseCommitOpen<cr>", desc = "Open commit in browser" },
+    { "<leader>gU", "<cmd>GitBrowseCommitCopy<cr>", desc = "Copy commit URL" },
+    { "<leader>gH", "<cmd>GitCopyLineCommitHash<cr>", desc = "Copy line commit hash" },
 
     -- LSP
     { "<leader>l", group = "LSP" },
@@ -144,17 +146,17 @@ function M.config()
 
     -- Neotest
     { "<leader>n", group = "Neotest" },
-    { "<leader>no", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "Toggle summary" },
-    { "<leader>nn", "<cmd>lua require('neotest').run.run()<CR>", desc = "Test nearest" },
-    { "<leader>nf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", desc = "Test file" },
-    { "<leader>nl", "<cmd>lua require('neotest').run.run_last()<CR>", desc = "Run last test" },
-    { "<leader>ns", "<cmd>lua require('neotest').run.run({ suite = true })<CR>", desc = "Test suite" },
+    { "<leader>no", "<cmd>lua require('neotest').summary.toggle()<cr>", desc = "Toggle summary" },
+    { "<leader>nn", "<cmd>lua require('neotest').run.run()<cr>", desc = "Test nearest" },
+    { "<leader>nf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Test file" },
+    { "<leader>nl", "<cmd>lua require('neotest').run.run_last()<cr>", desc = "Run last test" },
+    { "<leader>ns", "<cmd>lua require('neotest').run.run({ suite = true })<cr>", desc = "Test suite" },
 
     -- Visual mode mappings
     { "<leader>/", "gc", desc = "Comment", mode = "v", remap = true },
     { "<leader>g", group = "Git", mode = "v" },
-    { "<leader>go", "<cmd>lua require('snacks').gitbrowse()<CR>", desc = "Open in browser", mode = "v", },
-    { "<leader>gc", "<cmd>lua require('snacks').gitbrowse({ action = 'copy' })<CR>", desc = "Copy to clipboard", mode = "v", },
+    { "<leader>go", "<cmd>GitBrowseOpen<cr>", desc = "Open in browser", mode = "v" },
+    { "<leader>gc", "<cmd>GitBrowseCopy<cr>", desc = "Copy to clipboard", mode = "v" },
   })
 end
 -- stylua: ignore end

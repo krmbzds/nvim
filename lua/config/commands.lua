@@ -21,6 +21,10 @@ local function clipboard()
   return format(fn.getreg("+"):gsub("\n", " "))
 end
 
+local function set_clipboard(text)
+  fn.setreg("+", text)
+end
+
 local function input(args)
   fn.inputsave()
   local query = fn.input(args)
@@ -84,6 +88,37 @@ end, { desc = "Search clipboard contents on grep.app" })
 api.nvim_create_user_command("GrepAppInput", function()
   grep_app(input({ prompt = "grep.app: ", completion = "buffer" }), "Search cancelled")
 end, { desc = "Search input on grep.app" })
+
+-- Open commit in browser
+api.nvim_create_user_command("GitBrowseCommitOpen", function()
+  require("snacks").gitbrowse({ what = "commit" })
+end, { desc = "Open commit in browser" })
+
+-- Copy commit URL to clipboard
+api.nvim_create_user_command("GitBrowseCommitCopy", function()
+  require("snacks").gitbrowse({ what = "commit", open = set_clipboard })
+end, { desc = "Copy commit URL" })
+
+-- Copy commit hash of current line under cursor
+api.nvim_create_user_command("GitCopyLineCommitHash", function()
+  local file = vim.fn.expand("%:p")
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local cmd = string.format('git blame -L %d,%d --porcelain "%s"|head -n1|cut -d" " -f1', line, line, file)
+  local hash = vim.fn.system(cmd):gsub("\n", "")
+  if hash ~= "" then
+    set_clipboard(hash)
+  end
+end, { desc = "Copy line commit hash" })
+
+-- Open visual selection in browser
+api.nvim_create_user_command("GitBrowseOpen", function()
+  require("snacks").gitbrowse()
+end, { desc = "Open in browser", range = true })
+
+-- Copy visual selection permalink to clipboard
+api.nvim_create_user_command("GitBrowseCopy", function()
+  require("snacks").gitbrowse({ open = set_clipboard })
+end, { desc = "Copy to clipboard", range = true })
 
 -- Global functions
 function REPEAT_LAST_MACRO_OR_Q()
