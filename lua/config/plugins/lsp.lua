@@ -18,7 +18,7 @@ local M = {
 
     -- Snippets
     { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
-    "krmbzds/friendly-snippets",
+    "rafamadriz/friendly-snippets",
 
     -- Miscellaneous
     { "j-hui/fidget.nvim" },
@@ -164,7 +164,7 @@ function M.config()
   local compare = require("cmp.config.compare")
 
   require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
-  require("luasnip.loaders.from_vscode").lazy_load() -- friendly-snippets
+  require("luasnip.loaders.from_vscode").lazy_load({ exclude = require("config.ignore").snippets_exclude }) -- friendly-snippets
   luasnip.filetype_extend("ruby", { "rails" })
 
   local check_backspace = function()
