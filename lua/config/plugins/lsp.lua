@@ -22,6 +22,7 @@ local M = {
 
     -- Miscellaneous
     { "j-hui/fidget.nvim" },
+    { "folke/lazydev.nvim" },
   },
 }
 
@@ -41,7 +42,7 @@ function M.config()
       function(server_name)
         require("lspconfig")[server_name].setup({
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          on_attach = function(client, bufnr)
+          on_attach = function(_client, _bufnr)
             -- Prevent multiple attachments
             if vim.b.lsp_attached then
               return
@@ -53,33 +54,32 @@ function M.config()
       -- Custom handler for lua_ls
       ["lua_ls"] = function()
         local lua_ls_opts = require("config.lsp.lua_ls")
-        require("lspconfig").lua_ls.setup({
+        local opts = {
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          settings = lua_ls_opts.settings,
-          on_attach = function(client, bufnr)
-            -- Prevent multiple attachments
+          on_attach = function(_client, _bufnr)
             if vim.b.lsp_attached then
               return
             end
             vim.b.lsp_attached = true
           end,
-        })
+        }
+        opts = vim.tbl_deep_extend("force", opts, lua_ls_opts or {})
+        require("lspconfig").lua_ls.setup(opts)
       end,
       -- Custom handler for ruby_lsp
       ["ruby_lsp"] = function()
-        require("lspconfig").ruby_lsp.setup({
+        local ruby_lsp_opts = require("config.lsp.ruby_lsp")
+        local opts = {
           capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          init_options = {
-            formatter = "none",
-          },
-          on_attach = function(client, bufnr)
-            -- Prevent multiple attachments
+          on_attach = function(_client, _bufnr)
             if vim.b.lsp_attached then
               return
             end
             vim.b.lsp_attached = true
           end,
-        })
+        }
+        opts = vim.tbl_deep_extend("force", opts, ruby_lsp_opts or {})
+        require("lspconfig").ruby_lsp.setup(opts)
       end,
     },
   })
@@ -180,7 +180,7 @@ function M.config()
 
   cmp.setup({
     enabled = function()
-      local buftype = api.nvim_buf_get_option(0, "buftype")
+      local buftype = vim.bo.buftype
       if buftype == "prompt" then
         return false
       end

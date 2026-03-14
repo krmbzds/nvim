@@ -25,7 +25,7 @@ function M.config()
 
   neotest.setup({
     adapters = {
-      require("neotest-rspec"),
+      rspec,
     },
     icons = {
       running_animated = icons.running_animated,

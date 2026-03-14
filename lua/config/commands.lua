@@ -6,7 +6,7 @@ local function empty(s)
 end
 
 local function format(s)
-  return fn.shellescape(s, 1):sub(2, -2)
+  return fn.shellescape(s, true):sub(2, -2)
 end
 
 local function echo(msg)
@@ -46,17 +46,8 @@ end
 
 -- Set WinBar & WinBarNC background to Normal background
 function CLEAR_WINBAR_BG()
-  local function _clear_bg(name)
-    local hl = api.nvim_get_hl(0, { name = name, link = false })
-    if hl.bg or hl.ctermbg then
-      hl.bg = nil
-      hl.ctermbg = nil
-      api.nvim_set_hl(0, name, hl)
-    end
-  end
-
-  _clear_bg("WinBar")
-  _clear_bg("WinBarNC")
+  api.nvim_set_hl(0, "WinBar", { bg = "NONE", ctermbg = "NONE" })
+  api.nvim_set_hl(0, "WinBarNC", { bg = "NONE", ctermbg = "NONE" })
 end
 
 -- Commands
