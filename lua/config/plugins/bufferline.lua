@@ -1,6 +1,6 @@
 local M = {
   "akinsho/nvim-bufferline.lua",
-  event = "BufReadPre",
+  event = "BufReadPost",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },

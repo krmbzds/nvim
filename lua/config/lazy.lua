@@ -19,7 +19,7 @@ opt.runtimepath:prepend(lazypath)
 
 local opts = {
   defaults = {
-    lazy = false,
+    lazy = true,
   },
   concurrency = 8,
   checker = {

@@ -1,8 +1,8 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
-  lazy = true,
-  event = "BufReadPost",
+  priority = 1000,
+  lazy = false,
   dependencies = {
     "windwp/nvim-autopairs",
     "RRethy/vim-illuminate",

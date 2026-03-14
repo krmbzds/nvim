@@ -1,5 +1,6 @@
 local M = {
   "roobert/bufferline-cycle-windowless.nvim",
+  event = "BufReadPost",
   dependencies = {
     { "akinsho/bufferline.nvim" },
   },

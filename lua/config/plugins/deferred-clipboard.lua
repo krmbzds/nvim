@@ -1,5 +1,6 @@
 local M = {
   "EtiamNullam/deferred-clipboard.nvim",
+  event = "VeryLazy",
 }
 
 function M.config()

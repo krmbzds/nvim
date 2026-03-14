@@ -1,7 +1,7 @@
 local M = {
   "mfussenegger/nvim-dap",
   lazy = true,
-  event = "VeryLazy",
+  cmd = { "DapToggleBreakpoint", "DapContinue", "DapStepOver", "DapStepInto", "DapStepOut", "DapTerminate" },
   dependencies = {
     { "rcarriga/nvim-dap-ui" },
     { "suketa/nvim-dap-ruby" },

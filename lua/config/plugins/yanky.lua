@@ -1,6 +1,7 @@
 local api = vim.api
 local M = {
   "gbprod/yanky.nvim",
+  event = "VeryLazy",
 }
 
 function M.config()

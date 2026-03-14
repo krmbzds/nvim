@@ -1,6 +1,7 @@
 local M = {
   "ggandor/flit.nvim",
   dependencies = { "ggandor/leap.nvim" },
+  keys = { "f", "F", "t", "T" },
 }
 
 function M.config()

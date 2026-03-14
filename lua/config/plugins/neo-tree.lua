@@ -8,7 +8,6 @@ local M = {
     "MunifTanjim/nui.nvim",
   },
   lazy = true,
-  event = "BufReadPost",
   keys = {
     { "<leader>e", "<cmd>Neotree toggle<cr>" },
   },

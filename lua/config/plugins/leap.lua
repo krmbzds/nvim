@@ -1,6 +1,7 @@
 local M = {
   url = "https://codeberg.org/andyg/leap.nvim.git",
   "andyg/leap.nvim",
+  keys = { "s", "S", "gs" },
 }
 
 function M.config()

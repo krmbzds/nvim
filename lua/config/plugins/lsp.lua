@@ -2,7 +2,7 @@ local api = vim.api
 local M = {
   "neovim/nvim-lspconfig",
   lazy = true,
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost", "BufNewFile" },
   dependencies = {
     -- LSP Support
     "williamboman/mason.nvim",

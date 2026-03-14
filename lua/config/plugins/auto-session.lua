@@ -1,5 +1,6 @@
 local M = {
   "rmagatti/auto-session",
+  lazy = false,
 }
 
 function M.config()
@@ -22,6 +23,9 @@ function M.config()
     log_level = "error",
     suppressed_dirs = { "/", "~/", "~/Downloads" },
     pre_save_cmds = { "Neotree close", "cclose", "lua vim.notify.dismiss()", close_floating_windows },
+    session_lens = {
+      load_on_setup = false,
+    },
   })
 end
 
