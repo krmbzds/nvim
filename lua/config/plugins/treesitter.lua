@@ -3,6 +3,7 @@ local M = {
   build = ":TSUpdate",
   priority = 1000,
   lazy = false,
+  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   dependencies = {
     "windwp/nvim-autopairs",
     "RRethy/vim-illuminate",
