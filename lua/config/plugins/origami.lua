@@ -13,7 +13,7 @@ function M.config()
 
   origami.setup({
     useLspFoldsWithTreesitterFallback = {
-      enable = true,
+      enable = false,
       foldmethodIfNeitherIsAvailable = function(bufnr)
         local ft = vim.bo[bufnr].filetype
         local ft_filter = { "help", "text" }
