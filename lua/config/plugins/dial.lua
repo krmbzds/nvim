@@ -24,6 +24,7 @@ function M.config()
       augend.date.alias["%Y-%m-%d"],
       augend.constant.new({ elements = { "yes", "no" }, word = true, cyclic = true }),
       augend.constant.new({ elements = { "[ ]", "[x]" }, word = false, cyclic = true }),
+      augend.constant.new({ elements = { "allow", "deny" }, word = false, cyclic = true }),
       augend.date.alias["%H:%M"],
     },
     visual = {
