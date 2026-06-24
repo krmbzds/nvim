@@ -33,7 +33,7 @@ function M.config()
   -- stylua: ignore start
   which_key.add({
     -- General mappings
-    { "<leader>a", "<cmd>lua require('neogen').generate({})<cr>", desc = "Annotate" },
+    { "<leader>A", "<cmd>lua require('neogen').generate({})<cr>", desc = "Annotate" },
     { "<leader>w", "<cmd>w!<cr>", desc = "Save" },
     { "<leader>q", "<cmd>q!<cr>", desc = "Quit" },
     { "<leader>c", close_buffer, desc = "Close Buffer" },
