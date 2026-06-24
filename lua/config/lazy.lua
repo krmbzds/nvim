@@ -23,10 +23,13 @@ local opts = {
   },
   concurrency = 8,
   checker = {
-    enabled = false,
+    enabled = true,
     concurrency = 8,
-    notify = false,
+    notify = true,
     frequency = 3600,
+  },
+  rocks = {
+    enabled = false,
   },
   performance = {
     cache = { enabled = true },
