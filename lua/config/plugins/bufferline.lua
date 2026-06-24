@@ -3,6 +3,7 @@ local M = {
   event = "BufReadPost",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    "folke/snacks.nvim",
   },
 }
 
