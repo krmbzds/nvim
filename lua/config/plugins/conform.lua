@@ -1,9 +1,6 @@
 local M = {
   "stevearc/conform.nvim",
-  lazy = true,
-  event = { "InsertEnter", "TextChanged", "TextChangedI", "BufWritePre" },
-  cmd = { "Format" },
-  opts = {},
+  lazy = false,
 }
 
 function M.config()
@@ -18,7 +15,13 @@ function M.config()
       ruby = { "standardrb" },
       yaml = { "yamlfmt" },
     },
+
+    notify_on_error = true,
   })
+
+  vim.keymap.set("n", "<leader>lf", function()
+    require("conform").format({ async = true })
+  end, { desc = "Format" })
 end
 
 return M
