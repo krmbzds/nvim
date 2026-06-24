@@ -1,4 +1,5 @@
 local M = {
+  url = "https://codeberg.org/fosk/registers.nvim",
   "tversteeg/registers.nvim",
   lazy = true,
   keys = {
