@@ -123,9 +123,7 @@ function M.config()
       vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
       vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
       vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set("n", "<space>lf", function()
-        vim.lsp.buf.format({ async = true })
-      end, opts)
+      -- Formatting handled by conform.nvim (<leader>lf)
     end,
   })
 
