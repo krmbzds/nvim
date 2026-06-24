@@ -16,10 +16,31 @@ local M = {
 }
 
 function M.config()
+  local version_path = vim.fn.stdpath("cache") .. "/nvim_version_ts"
+
+  local function sync_parsers_on_version_change()
+    local f = io.open(version_path, "r")
+    local cached_version = f and f:read("*a") or ""
+    if f then
+      f:close()
+    end
+    local current_version = vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
+    if cached_version ~= current_version then
+      require("nvim-treesitter.install").update({ with_sync = true })
+      local w = io.open(version_path, "w")
+      if w then
+        w:write(current_version)
+        w:close()
+      end
+    end
+  end
+
   local status_ok, configs = pcall(require, "nvim-treesitter.configs")
   if not status_ok then
     return
   end
+
+  sync_parsers_on_version_change()
 
   configs.setup({
     ensure_installed = {
