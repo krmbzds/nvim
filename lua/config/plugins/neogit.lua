@@ -5,7 +5,6 @@ local M = {
     { "<leader>g", mode = "n" },
   },
   dependencies = "nvim-lua/plenary.nvim",
-  config = true,
 }
 
 function M.config()
