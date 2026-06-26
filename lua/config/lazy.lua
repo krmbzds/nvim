@@ -26,7 +26,7 @@ local opts = {
     enabled = true,
     concurrency = 8,
     notify = true,
-    frequency = 3600,
+    frequency = 86400,
   },
   rocks = {
     enabled = false,
