@@ -8,6 +8,7 @@ local M = {
 function M.config()
   local status_ok, origami = pcall(require, "origami")
   if not status_ok then
+    vim.notify("origami failed to load: " .. tostring(origami), vim.log.levels.ERROR)
     return
   end
 

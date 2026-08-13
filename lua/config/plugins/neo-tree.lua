@@ -16,6 +16,7 @@ local M = {
 function M.config()
   local status_ok, neo_tree = pcall(require, "neo-tree")
   if not status_ok then
+    vim.notify("neo-tree failed to load: " .. tostring(neo_tree), vim.log.levels.ERROR)
     return
   end
 

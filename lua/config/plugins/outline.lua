@@ -14,6 +14,7 @@ local M = {
 function M.config()
   local status_ok, outline = pcall(require, "outline")
   if not status_ok then
+    vim.notify("outline failed to load: " .. tostring(outline), vim.log.levels.ERROR)
     return
   end
 

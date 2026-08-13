@@ -7,11 +7,13 @@ local M = {
 function M.config()
   local status_ok, dial_config = pcall(require, "dial.config")
   if not status_ok then
+    vim.notify("dial.config failed to load: " .. tostring(dial_config), vim.log.levels.ERROR)
     return
   end
 
   local augend_ok, augend = pcall(require, "dial.augend")
   if not augend_ok then
+    vim.notify("dial.augend failed to load: " .. tostring(augend), vim.log.levels.ERROR)
     return
   end
 

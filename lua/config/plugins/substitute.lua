@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, substitute = pcall(require, "substitute")
   if not status_ok then
+    vim.notify("substitute failed to load: " .. tostring(substitute), vim.log.levels.ERROR)
     return
   end
 

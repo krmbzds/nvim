@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local dap_ruby_ok, dap_ruby = pcall(require, "dap-ruby")
   if not dap_ruby_ok then
+    vim.notify("dap-ruby failed to load: " .. tostring(dap_ruby), vim.log.levels.ERROR)
     return
   end
 

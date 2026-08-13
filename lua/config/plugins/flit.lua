@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, flit = pcall(require, "flit")
   if not status_ok then
+    vim.notify("flit failed to load: " .. tostring(flit), vim.log.levels.ERROR)
     return
   end
 

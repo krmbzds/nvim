@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, neoscroll = pcall(require, "neoscroll")
   if not status_ok then
+    vim.notify("neoscroll failed to load: " .. tostring(neoscroll), vim.log.levels.ERROR)
     return
   end
 

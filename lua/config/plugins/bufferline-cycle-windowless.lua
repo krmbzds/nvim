@@ -9,6 +9,10 @@ local M = {
 function M.config()
   local status_ok, bufferline_cycle_windowless = pcall(require, "bufferline-cycle-windowless")
   if not status_ok then
+    vim.notify(
+      "bufferline-cycle-windowless failed to load: " .. tostring(bufferline_cycle_windowless),
+      vim.log.levels.ERROR
+    )
     return
   end
 

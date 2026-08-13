@@ -13,6 +13,7 @@ function M.config()
 
   local dap_ui_ok, dap_ui = pcall(require, "dapui")
   if not dap_ui_ok then
+    vim.notify("dapui failed to load: " .. tostring(dap_ui), vim.log.levels.ERROR)
     return
   end
 

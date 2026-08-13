@@ -11,6 +11,7 @@ local M = {
 function M.config()
   local status_ok, highlight_undo = pcall(require, "highlight-undo")
   if not status_ok then
+    vim.notify("highlight-undo failed to load: " .. tostring(highlight_undo), vim.log.levels.ERROR)
     return
   end
 

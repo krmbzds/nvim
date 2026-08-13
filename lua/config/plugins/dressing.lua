@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, dressing = pcall(require, "dressing")
   if not status_ok then
+    vim.notify("dressing failed to load: " .. tostring(dressing), vim.log.levels.ERROR)
     return
   end
 

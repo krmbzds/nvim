@@ -13,11 +13,13 @@ function M.config()
 
   local autopairs_ok, autopairs = pcall(require, "nvim-autopairs")
   if not autopairs_ok then
+    vim.notify("nvim-autopairs failed to load: " .. tostring(autopairs), vim.log.levels.ERROR)
     return
   end
 
   local cmp_autopairs_ok, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
   if not cmp_autopairs_ok then
+    vim.notify("nvim-autopairs.completion.cmp failed to load: " .. tostring(cmp_autopairs), vim.log.levels.ERROR)
     return
   end
 

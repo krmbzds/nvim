@@ -7,6 +7,7 @@ function M.config()
   local api = vim.api
   local status_ok, mini_indentscope = pcall(require, "mini.indentscope")
   if not status_ok then
+    vim.notify("mini.indentscope failed to load: " .. tostring(mini_indentscope), vim.log.levels.ERROR)
     return
   end
 

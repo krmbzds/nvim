@@ -9,6 +9,7 @@ local M = {
 function M.config()
   local status_ok, no_neck_pain = pcall(require, "no-neck-pain")
   if not status_ok then
+    vim.notify("no-neck-pain failed to load: " .. tostring(no_neck_pain), vim.log.levels.ERROR)
     return
   end
 

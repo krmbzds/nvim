@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, yanky = pcall(require, "yanky")
   if not status_ok then
+    vim.notify("yanky failed to load: " .. tostring(yanky), vim.log.levels.ERROR)
     return
   end
 

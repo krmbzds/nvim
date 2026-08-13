@@ -6,6 +6,7 @@ local M = {
 function M.config()
   local status_ok, conform = pcall(require, "conform")
   if not status_ok then
+    vim.notify("conform failed to load: " .. tostring(conform), vim.log.levels.ERROR)
     return
   end
 

@@ -6,6 +6,7 @@ local M = {
 function M.config()
   local status_ok, auto_session = pcall(require, "auto-session")
   if not status_ok then
+    vim.notify("auto-session failed to load: " .. tostring(auto_session), vim.log.levels.ERROR)
     return
   end
 

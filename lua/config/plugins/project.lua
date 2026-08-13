@@ -7,6 +7,7 @@ local M = {
 function M.config()
   local status_ok, project = pcall(require, "project")
   if not status_ok then
+    vim.notify("project failed to load: " .. tostring(project), vim.log.levels.ERROR)
     return
   end
 

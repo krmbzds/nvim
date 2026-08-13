@@ -12,6 +12,7 @@ local M = {
 function M.config()
   local status_ok, registers = pcall(require, "registers")
   if not status_ok then
+    vim.notify("registers failed to load: " .. tostring(registers), vim.log.levels.ERROR)
     return
   end
 

@@ -10,6 +10,7 @@ local M = {
 function M.config()
   local status_ok, gtd = pcall(require, "gtd")
   if not status_ok then
+    vim.notify("gtd failed to load: " .. tostring(gtd), vim.log.levels.ERROR)
     return
   end
 

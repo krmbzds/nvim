@@ -8,6 +8,7 @@ function M.config()
   local api = vim.api
   local status_ok, leap = pcall(require, "leap")
   if not status_ok then
+    vim.notify("leap failed to load: " .. tostring(leap), vim.log.levels.ERROR)
     return
   end
 

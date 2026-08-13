@@ -6,6 +6,7 @@ local M = {
 function M.config()
   local status_ok, lualine = pcall(require, "lualine")
   if not status_ok then
+    vim.notify("lualine failed to load: " .. tostring(lualine), vim.log.levels.ERROR)
     return
   end
 

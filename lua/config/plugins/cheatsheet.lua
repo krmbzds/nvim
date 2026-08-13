@@ -8,6 +8,7 @@ local M = {
 function M.config()
   local status_ok, cheatsheet = pcall(require, "cheatsheet")
   if not status_ok then
+    vim.notify("cheatsheet failed to load: " .. tostring(cheatsheet), vim.log.levels.ERROR)
     return
   end
 

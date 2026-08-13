@@ -12,6 +12,7 @@ local M = {
 function M.config()
   local status_ok, telescope = pcall(require, "telescope")
   if not status_ok then
+    vim.notify("telescope failed to load: " .. tostring(telescope), vim.log.levels.ERROR)
     return
   end
 

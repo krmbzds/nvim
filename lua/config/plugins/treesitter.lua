@@ -1,5 +1,9 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
+  -- D-08 targeted pin: the "main" rewrite removed `nvim-treesitter.configs`
+  -- (and `define_modules`), silently breaking this old-API config. Pin the
+  -- legacy `master` branch, which retains the API this spec is written for.
+  branch = "master",
   build = ":TSUpdate",
   priority = 1000,
   lazy = false,
@@ -9,7 +13,7 @@ local M = {
     "RRethy/vim-illuminate",
     "abecodes/tabout.nvim",
     "RRethy/nvim-treesitter-endwise",
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    { "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
     "windwp/nvim-ts-autotag",
     "kylechui/nvim-surround",
   },
@@ -18,6 +22,7 @@ local M = {
 function M.config()
   local status_ok, configs = pcall(require, "nvim-treesitter.configs")
   if not status_ok then
+    vim.notify("nvim-treesitter.configs failed to load: " .. tostring(configs), vim.log.levels.ERROR)
     return
   end
 

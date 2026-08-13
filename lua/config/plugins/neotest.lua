@@ -13,6 +13,7 @@ local M = {
 function M.config()
   local status_ok, neotest = pcall(require, "neotest")
   if not status_ok then
+    vim.notify("neotest failed to load: " .. tostring(neotest), vim.log.levels.ERROR)
     return
   end
 

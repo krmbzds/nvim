@@ -11,6 +11,7 @@ local M = {
 function M.config()
   local dap_ok, dap = pcall(require, "dap")
   if not dap_ok then
+    vim.notify("dap failed to load: " .. tostring(dap), vim.log.levels.ERROR)
     return
   end
 

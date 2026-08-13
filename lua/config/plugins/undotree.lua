@@ -10,6 +10,7 @@ local M = {
 function M.config()
   local status_ok, undotree = pcall(require, "undotree")
   if not status_ok then
+    vim.notify("undotree failed to load: " .. tostring(undotree), vim.log.levels.ERROR)
     return
   end
 

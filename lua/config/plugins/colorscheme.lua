@@ -35,6 +35,7 @@ function M.config()
 
   local status_ok, dracula = pcall(require, "dracula")
   if not status_ok then
+    vim.notify("dracula failed to load, falling back to default: " .. tostring(dracula), vim.log.levels.WARN)
     vim.cmd("colorscheme default")
     return
   end

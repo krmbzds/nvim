@@ -10,6 +10,7 @@ local M = {
 function M.config()
   local status_ok, neogit = pcall(require, "neogit")
   if not status_ok then
+    vim.notify("neogit failed to load: " .. tostring(neogit), vim.log.levels.ERROR)
     return
   end
 
