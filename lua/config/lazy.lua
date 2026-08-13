@@ -1,5 +1,5 @@
 local fn = vim.fn
-local loop = vim.loop
+local loop = vim.uv
 local opt = vim.opt
 local icons = require("config.icons").lazy
 

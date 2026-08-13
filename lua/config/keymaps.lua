@@ -58,7 +58,7 @@ keymap("n", "<leader>0", "<cmd>Neotree focus<cr>", opts)
 
 -- Leap
 -- stylua: ignore start
-keymap("n", "kj", "<cmd>lua require('leap').leap { target_windows = vim.tbl_filter(function(win) return vim.api.nvim_win_get_config(win).focusable end, vim.api.nvim_tabpage_list_wins(0)) }<cr>", opts)
+keymap("n", "kj", "<cmd>lua require('leap').leap { target_windows = vim.iter(vim.api.nvim_tabpage_list_wins(0)):filter(function(win) return vim.api.nvim_win_get_config(win).focusable end):totable() }<cr>", opts)
 -- stylua: ignore end
 
 -- Substitute

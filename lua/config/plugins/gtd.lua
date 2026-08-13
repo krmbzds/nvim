@@ -31,7 +31,7 @@ function M.config()
           local row = location.targetSelectionRange.start.line + 1
           local col = location.targetSelectionRange.start.character + 1
           local fname = vim.uri_to_fname(location.targetUri)
-          local rname = require("plenary.path"):new(fname):make_relative(vim.loop.cwd())
+          local rname = require("plenary.path"):new(fname):make_relative(vim.uv.cwd())
           local display = ("%s:%s:%s"):format(rname, row, col)
           entries[i] = { fname, display }
         end
