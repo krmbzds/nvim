@@ -1,33 +1,17 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
-  -- D-08 targeted pin: the "main" rewrite removed `nvim-treesitter.configs`
-  -- (and `define_modules`), silently breaking this old-API config. Pin the
-  -- legacy `master` branch, which retains the API this spec is written for.
-  branch = "master",
   build = ":TSUpdate",
   priority = 1000,
   lazy = false,
-  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
-  dependencies = {
-    "windwp/nvim-autopairs",
-    "RRethy/vim-illuminate",
-    "abecodes/tabout.nvim",
-    "RRethy/nvim-treesitter-endwise",
-    { "nvim-treesitter/nvim-treesitter-textobjects", branch = "master" },
-    "windwp/nvim-ts-autotag",
-    "kylechui/nvim-surround",
-  },
 }
 
 function M.config()
-  local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-  if not status_ok then
-    vim.notify("nvim-treesitter.configs failed to load: " .. tostring(configs), vim.log.levels.ERROR)
-    return
-  end
+  require("nvim-treesitter").setup({
+    install_dir = vim.fn.stdpath("data") .. "/site",
+  })
 
-  configs.setup({
-    ensure_installed = {
+  require("nvim-treesitter")
+    .install({
       "bash",
       "c",
       "cmake",
@@ -51,82 +35,29 @@ function M.config()
       "typescript",
       "vim",
       "yaml",
-    },
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-    ignore_install = { "" }, -- List of parsers to ignore installing
-    autopairs = {
-      enable = true,
-    },
-    autotag = {
-      enable = true,
-      filetypes = { "html", "xml", "javascript", "typescript" },
-    },
-    endwise = {
-      enable = true,
-    },
-    highlight = {
-      enable = true, -- false will disable the whole extension
-      disable = { "" }, -- list of language that will be disabled
-      -- additional_vim_regex_highlighting = true,
-    },
-    indent = { enable = true, disable = { "yaml" } },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ["ab"] = "@block.outer",
-          ["ib"] = "@block.inner",
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-          ["aa"] = "@parameter.outer",
-          ["ia"] = "@parameter.inner",
-        },
-        selection_modes = {
-          ["@parameter.outer"] = "v", -- charwise
-          ["@function.outer"] = "V", -- linewise
-          ["@class.outer"] = "<c-v>", -- blockwise
-        },
-        include_surrounding_whitespace = true,
-      },
-      move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-          ["]a"] = "@parameter.inner",
-          ["]b"] = "@block.inner",
-          ["]c"] = "@class.inner",
-          ["]f"] = "@function.inner",
-          ["]m"] = "@function.outer",
-        },
-        goto_next_end = {
-          ["]eb"] = "@block.inner",
-          ["]ec"] = "@class.inner",
-          ["]ef"] = "@function.inner",
-          ["]em"] = "@function.outer",
-        },
-        goto_previous_start = {
-          ["[a"] = "@parameter.inner",
-          ["[b"] = "@block.inner",
-          ["[c"] = "@class.inner",
-          ["[f"] = "@function.inner",
-          ["[m"] = "@function.outer",
-        },
-        goto_previous_end = {
-          ["[eb"] = "@block.inner",
-          ["[ec"] = "@class.inner",
-          ["[ef"] = "@function.inner",
-          ["[em"] = "@function.outer",
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = { ["]["] = "@parameter.inner" },
-        swap_previous = { ["[]"] = "@parameter.inner" },
-      },
-    },
+    })
+    :wait(300000)
+
+  local group = vim.api.nvim_create_augroup("nvim-treesitter-highlight", { clear = true })
+  vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    callback = function(args)
+      -- main does not auto-enable highlighting; use built-in vim.treesitter.
+      pcall(vim.treesitter.start)
+
+      local ft = vim.bo[args.buf].filetype
+      if ft == "yaml" then
+        return
+      end
+
+      -- indent is experimental on main; opt in only when a parser is available.
+      local ok, installed = pcall(require("nvim-treesitter").get_installed)
+      if not ok or not vim.list_contains(installed, ft) then
+        return
+      end
+
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
   })
 end
 
