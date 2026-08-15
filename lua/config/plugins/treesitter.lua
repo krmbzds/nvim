@@ -10,8 +10,45 @@ function M.config()
     install_dir = vim.fn.stdpath("data") .. "/site",
   })
 
+  -- Third-party parsers: register asciidoc (markview prerequisite).
+  -- nvim-treesitter's install() reloads the parser table and fires a "User TSUpdate"
+  -- autocmd before resolving languages, so registration must happen in that hook.
+  --
+  -- PINNED to dd0d426: markview.nvim's AsciiDoc parser queries reference the node
+  -- types `attr_value` (block) and `ltalic` (inline), which the cathaysia grammar
+  -- renamed/removed in June 2026 (`attr_value` -> `attribute_value` in d01171b,
+  -- `ltalic` -> `italic` in 06386c8). On the newer grammar, markview's whole query
+  -- fails to parse and AsciiDoc renders nothing. Pin both parsers to the last commit
+  -- that still has these node types. The parser .so files and queries must be
+  -- installed at this revision (see parser-info/*.revision).
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "TSUpdate",
+    callback = function()
+      require("nvim-treesitter.parsers").asciidoc = {
+        install_info = {
+          url = "https://github.com/cathaysia/tree-sitter-asciidoc",
+          branch = "master",
+          revision = "dd0d4262fd0a7b2e99fd795a7f6b47190ab15eb2",
+          location = "tree-sitter-asciidoc",
+          queries = "queries/asciidoc/",
+        },
+        requires = { "asciidoc_inline" },
+      }
+      require("nvim-treesitter.parsers").asciidoc_inline = {
+        install_info = {
+          url = "https://github.com/cathaysia/tree-sitter-asciidoc",
+          branch = "master",
+          revision = "dd0d4262fd0a7b2e99fd795a7f6b47190ab15eb2",
+          location = "tree-sitter-asciidoc_inline",
+          queries = "queries/asciidoc_inline",
+        },
+      }
+    end,
+  })
+
   require("nvim-treesitter")
     .install({
+      "asciidoc",
       "bash",
       "c",
       "cmake",
@@ -28,6 +65,8 @@ function M.config()
       "jsonc",
       "lua",
       "make",
+      "markdown",
+      "markdown_inline",
       "python",
       "ruby",
       "scss",
