@@ -8,6 +8,7 @@ local M = {
     -- words = { enabled = true },
     bufdelete = { enabled = true },
     gitbrowse = { enabled = true },
+    image = { enabled = true },
     notifier = { enabled = true, timeout = 2000 },
     terminal = {
       enabled = true,
