@@ -7,6 +7,7 @@ local M = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "antoinemadec/FixCursorHold.nvim",
+    "kitlangton/navi.nvim",
   },
 }
 
@@ -27,6 +28,9 @@ function M.config()
   neotest.setup({
     adapters = {
       rspec,
+    },
+    consumers = {
+      navi = require("navi.evidence"),
     },
     icons = {
       running_animated = icons.running_animated,

@@ -120,6 +120,14 @@ function M.config()
     { "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Document Symbols" },
     { "<leader>lS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Workspace Symbols" },
 
+    -- Navi (mappings live in config/plugins/navi.lua; desc-only here)
+    { "<leader>r", group = "Navi" },
+    { "<leader>rj", desc = "Next stop" },
+    { "<leader>rl", desc = "Next stop" },
+    { "<leader>rk", desc = "Previous stop" },
+    { "<leader>rh", desc = "Previous stop" },
+    { "<leader>rp", desc = "Pick stop" },
+    { "<leader>rc", desc = "Clear tour" },
     -- Search
     { "<leader>s", group = "Search" },
     { "<leader>sf", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>", desc = "Find files" },
